@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaces.CargaMasiva">
+   <children>
+      <Label layoutX="165.0" layoutY="49.0" prefHeight="44.0" prefWidth="245.0" text="Carga Masiva">
+         <font>
+            <Font name="Verdana" size="35.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="113.0" fitWidth="129.0" layoutX="14.0" layoutY="14.0" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/usacLogo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="70.0" layoutX="36.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/user.png" />
+         </image></ImageView>
+      <Button fx:id="usuariosBtn" layoutX="168.0" layoutY="185.0" mnemonicParsing="false" onAction="#cargarArchivoUsuarios" prefHeight="50.0" prefWidth="240.0" text="Usuarios">
+         <font>
+            <Font name="Verdana" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
