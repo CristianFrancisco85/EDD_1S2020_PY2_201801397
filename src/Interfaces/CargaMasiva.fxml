@@ -28,5 +28,15 @@
             <Font name="Verdana" size="16.0" />
          </font>
       </Button>
+      <ImageView fitHeight="84.0" fitWidth="100.0" layoutX="38.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/libros.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="librosBtn" layoutX="165.0" layoutY="316.0" mnemonicParsing="false" onAction="#cargarLibros" prefHeight="50.0" prefWidth="240.0" text="Libros">
+         <font>
+            <Font name="Verdana" size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

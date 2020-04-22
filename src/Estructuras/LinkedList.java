@@ -6,7 +6,7 @@ public class LinkedList<T> {
     private NodoSimple<T> Iterador;
     private int Size;
 
-    LinkedList(){
+    public LinkedList(){
         this.Size=0;
         this.Head=null;
         this.Iterador=null;
