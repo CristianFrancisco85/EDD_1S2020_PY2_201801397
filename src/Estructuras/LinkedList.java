@@ -47,6 +47,17 @@ public class LinkedList<T> {
         return false;
     }
 
+    public int getPosition(T Value){
+        Iterador=Head;
+        for(int i=0;i<Size;i++){
+            if(Iterador.getValue()==Value){
+                return i;
+            }
+            Iterador=Iterador.getNextNodo();
+        }
+        return -1;
+    }
+
     /**
      * Elimina la lista
      */
@@ -73,6 +84,39 @@ public class LinkedList<T> {
             Iterador.setNextNodo(NewNode);
         }
         Size++;
+    }
+
+    /**
+     * Agrega un nodo en la posicion indicada
+     * @param Value Valor a agregar.
+     * @param Position Posicion donde se insertara
+     */
+    public void addIn(T Value,int Position){
+        if(Position<Size) {
+            NodoSimple<T> NewNode = new NodoSimple();
+            NewNode.setValue(Value);
+            if (isEmpty()) {
+                Head = NewNode;
+            }
+            else if (Position==0) {
+                this.addBegin(Value);
+            }
+            else if (Position==Size-1) {
+                this.addEnd(Value);
+            }
+            else {
+                Iterador = Head;
+                for (int i = 0; i < Position-1; i++) {
+                    Iterador = Iterador.getNextNodo();
+                }
+                Iterador.setNextNodo(NewNode);
+                NewNode.setNextNodo(Iterador.getNextNodo());
+            }
+            Size++;
+        }
+        else{
+            System.out.println("Posicion no valida");
+        }
     }
 
     /**

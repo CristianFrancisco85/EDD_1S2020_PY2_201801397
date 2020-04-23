@@ -1,6 +1,7 @@
 package Estructuras;
 
 import Clases.CategoriaLibro;
+import Clases.Libro;
 import javafx.stage.FileChooser;
 
 import java.io.*;
@@ -44,6 +45,7 @@ public class AVLTree<T,B> {
             //NODO YA EXISTE
             System.out.println("Valor repetido en AVL: "+InsertionParam);
             CategoriaLibro aux = (CategoriaLibro) Nodo.getValue();
+
             aux.getBookList().addEnd(Value);
             return Nodo;
         }

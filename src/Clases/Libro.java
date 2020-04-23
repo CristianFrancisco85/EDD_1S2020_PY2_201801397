@@ -72,4 +72,9 @@ public class Libro {
         return this.Categoria;
     }
 
+    @Override
+    public String toString(){
+        return Integer.toString(ISBN);
+    }
+
 }
