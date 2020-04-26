@@ -49,6 +49,7 @@ public class CargaMasiva implements Initializable{
                      tempUsuario.setPassword((String) auxJSONObject.get("Password"));
                      Data.getUsuariosStructure().add(tempUsuario,tempUsuario.getCarnet());
                  }
+                 System.out.println("USUARIOS CARGADOS");
 
              }
              catch (FileNotFoundException e){
@@ -101,6 +102,7 @@ public class CargaMasiva implements Initializable{
                     Data.getCategoriasStructure().setRoot(
                     Data.getCategoriasStructure().add(Data.getCategoriasStructure().getRoot(),tempLibro,TempCategoria.getCategoria()));
                 }
+                System.out.println("LIBROS CARGADOS");
 
             }
             catch (FileNotFoundException e){

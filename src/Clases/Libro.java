@@ -18,7 +18,7 @@ public class Libro {
     public void setISBN(int arg1){
         this.ISBN=arg1;
     }
-    public int getISBN(int arg1){
+    public int getISBN(){
         return this.ISBN;
     }
 

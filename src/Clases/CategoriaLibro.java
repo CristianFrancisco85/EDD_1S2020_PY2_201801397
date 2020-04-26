@@ -1,21 +1,21 @@
 package Clases;
 
-import Estructuras.LinkedList;
+import Estructuras.BTree;
 
 public class CategoriaLibro<T> {
-    LinkedList<T> BooksList;
+    BTree<T> BooksList;
     String Categoria;
 
     public CategoriaLibro(){
-        BooksList=new LinkedList<>();
+        BooksList=new BTree<>(5);
         Categoria = null;
     }
     public CategoriaLibro(String arg1){
-        BooksList=new LinkedList<>();
+        BooksList=new BTree<>(5);
         Categoria = arg1;
     }
 
-    public LinkedList<T> getBookList(){
+    public BTree<T> getBookList(){
         return BooksList;
     }
     public void setCategoria(String arg1){

@@ -1,5 +1,7 @@
 package Estructuras;
 
+import com.sun.xml.internal.ws.handler.HandlerException;
+
 public class LinkedList<T> {
 
     private NodoSimple<T> Head;
@@ -36,13 +38,12 @@ public class LinkedList<T> {
      */
     public boolean search(T Value){
 
-        while(Iterador != null){
-            if (Value == Iterador.getValue()){
+        Iterador= Head;
+        for(int i=0;i<Size;i++){
+            if(Iterador.getValue().equals(Value)){
                 return true;
             }
-            else{
-                Iterador = Iterador.getNextNodo();
-            }
+            Iterador=Iterador.getNextNodo();
         }
         return false;
     }
@@ -50,7 +51,7 @@ public class LinkedList<T> {
     public int getPosition(T Value){
         Iterador=Head;
         for(int i=0;i<Size;i++){
-            if(Iterador.getValue()==Value){
+            if(Iterador.getValue().equals(Value)){
                 return i;
             }
             Iterador=Iterador.getNextNodo();
@@ -92,25 +93,25 @@ public class LinkedList<T> {
      * @param Position Posicion donde se insertara
      */
     public void addIn(T Value,int Position){
-        if(Position<Size) {
+        if(Position==0){
+            this.addBegin(Value);
+        }
+        else if(Position>=Size){
+            this.addEnd(Value);
+        }
+        else if(Position<Size) {
             NodoSimple<T> NewNode = new NodoSimple();
             NewNode.setValue(Value);
             if (isEmpty()) {
                 Head = NewNode;
-            }
-            else if (Position==0) {
-                this.addBegin(Value);
-            }
-            else if (Position==Size-1) {
-                this.addEnd(Value);
             }
             else {
                 Iterador = Head;
                 for (int i = 0; i < Position-1; i++) {
                     Iterador = Iterador.getNextNodo();
                 }
-                Iterador.setNextNodo(NewNode);
                 NewNode.setNextNodo(Iterador.getNextNodo());
+                Iterador.setNextNodo(NewNode);
             }
             Size++;
         }

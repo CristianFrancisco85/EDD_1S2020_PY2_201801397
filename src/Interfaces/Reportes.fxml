@@ -29,5 +29,15 @@
             <Image url="@../Imagenes/user.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="84.0" fitWidth="100.0" layoutX="29.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/libros.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="librosBtn" layoutX="166.0" layoutY="286.0" mnemonicParsing="false" onAction="#graficarLibros" prefHeight="40.0" prefWidth="300.0" text="Arbol AVL -- Libros">
+         <font>
+            <Font name="Verdana" size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
