@@ -33,7 +33,9 @@ public class AVLTree<T,B> {
             CategoriaLibro NewCategoria=new CategoriaLibro(InsertionParam);
             Libro NewLibro = (Libro) Value;
             try {
-                NewCategoria.getBookList().setRoot(NewCategoria.getBookList().add(NewCategoria.getBookList().getRoot(), NewLibro, NewLibro.getISBN()));
+                if(!NewCategoria.getBookList().searchByIndex(NewCategoria.getBookList().getRoot(),NewLibro.getISBN())){
+                    NewCategoria.getBookList().setRoot(NewCategoria.getBookList().add(NewCategoria.getBookList().getRoot(), NewLibro, NewLibro.getISBN()));
+                }
             }
             catch (Exception e){e.printStackTrace();}
             return new NodoBinario(NewCategoria);

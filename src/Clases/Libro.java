@@ -10,9 +10,10 @@ public class Libro {
     String Autor;
     int Edicion;
     String Categoria;
+    int CarneCreador;
 
     public Libro(){
-
+        CarneCreador=0;
     }
 
     public void setISBN(int arg1){
@@ -70,6 +71,13 @@ public class Libro {
     }
     public String getCategoria(){
         return this.Categoria;
+    }
+
+    public void setCreador(int arg1){
+        this.CarneCreador=arg1;
+    }
+    public int getCreador(){
+        return  this.CarneCreador;
     }
 
     @Override

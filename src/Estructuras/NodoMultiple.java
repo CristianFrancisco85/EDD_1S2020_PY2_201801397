@@ -1,5 +1,7 @@
 package Estructuras;
 
+import Clases.Libro;
+
 public class NodoMultiple<T> {
     private LinkedList<Integer> IndicesList;
     private LinkedList<T> ValueList;
@@ -86,7 +88,9 @@ public class NodoMultiple<T> {
         dotString.append("[label=\"<P0>");
         for(int i=0;i<this.getIndices().getSize();i++){
             try {
-                dotString.append("|" + this.getIndices().getValue(i).toString());
+                Libro auxLibro = (Libro)this.getValues().getValue(i);
+                dotString.append("|" + this.getIndices().getValue(i).toString()+"\\nTitulo: "+auxLibro.getTitulo()+
+                "\\nISBN: "+auxLibro.toString());
                 dotString.append("|<P"+(i+1)+">");
             }
             catch (Exception e){
@@ -321,6 +325,7 @@ public class NodoMultiple<T> {
         this.getIndices().removeByPosition(Index);
         this.getValues().removeByPosition(Index);
         this.Grade--;
+
         if(this.getNodosList().getSize()!=0 && this.getParent()!=null){
             try {
                 //SE OBTIENE NODO MAS A DERECHA DEL SUB ARBOL IZQUIERDO
@@ -376,6 +381,7 @@ public class NodoMultiple<T> {
                         Nodo.addValue(auxValueList.getValue(IndexNodo), auxIndicesList.getValue(IndexNodo));
                         auxValueList.removeByPosition(IndexNodo);
                         auxIndicesList.removeByPosition(IndexNodo);
+                        auxParent.Grade--;
                         auxParent.addValue(auxRightNodo.getValues().getValue(0), (Integer) auxRightNodo.getIndices().getValue(0));
                         auxRightNodo.ValueList.removeByPosition(0);
                         auxRightNodo.IndicesList.removeByPosition(0);
@@ -383,21 +389,69 @@ public class NodoMultiple<T> {
                         return;
                     }
 
-                } else {
+
+                }
+                else {
                     NodoMultiple<T> auxLeftNodo = getLeafRight(auxNodosList.getValue(IndexNodo - 1));
                     if (auxLeftNodo.getGrade() > (Grade - 1) / 2) {
                         //SE BAJA UN VALOR DE PADRE
                         Nodo.addValue(auxValueList.getValue(IndexNodo), auxIndicesList.getPosition(IndexNodo));
                         auxValueList.removeByPosition(IndexNodo);
                         auxIndicesList.removeByPosition(IndexNodo);
-                        auxParent.addValue(auxLeftNodo.getValues().getValue(0), (Integer) auxLeftNodo.getIndices().getValue(0));
-                        auxLeftNodo.ValueList.removeByPosition(0);
-                        auxLeftNodo.IndicesList.removeByPosition(0);
+                        auxParent.Grade--;
+                        auxParent.addValue(auxLeftNodo.getValues().getValue(this.ValueList.getSize()-1),
+                                (Integer) auxLeftNodo.getIndices().getValue(this.IndicesList.getSize()-1));
+                        auxLeftNodo.ValueList.removeByPosition(this.ValueList.getSize()-1);
+                        auxLeftNodo.IndicesList.removeByPosition(this.IndicesList.getSize()-1);
                         auxLeftNodo.Grade--;
                         return;
                     }
 
                 }
+
+
+                //SI NO HAY NODOS HERMANOS PARA JUNTAR
+                if (IndexNodo + 1 < auxNodosList.getSize()) {
+                    NodoMultiple<T> auxRightNodo = auxNodosList.getValue(IndexNodo + 1);
+                    if (auxRightNodo.getGrade() > (Grade - 1) / 2) {
+                        //SE BAJA UN VALOR DE PADRE
+                        Nodo.addValue(auxValueList.getValue(IndexNodo), auxIndicesList.getValue(IndexNodo));
+                        auxValueList.removeByPosition(IndexNodo);
+                        auxIndicesList.removeByPosition(IndexNodo);
+                        auxParent.Grade--;
+                        auxParent.addValue(auxRightNodo.getValues().getValue(0), (Integer) auxRightNodo.getIndices().getValue(0));
+                        auxRightNodo.ValueList.removeByPosition(0);
+                        auxRightNodo.IndicesList.removeByPosition(0);
+                        auxRightNodo.Grade--;
+
+                        Nodo.NodosList.addEnd(auxRightNodo.NodosList.getValue(0));
+                        auxRightNodo.NodosList.removeByPosition(0);
+                        Nodo.redifineParent();
+                        return;
+                    }
+                }
+                else{
+                    NodoMultiple<T> auxLeftNodo = auxNodosList.getValue(IndexNodo + 1);
+                    if (auxLeftNodo.getGrade() > (Grade - 1) / 2) {
+                        //SE BAJA UN VALOR DE PADRE
+                        Nodo.addValue(auxValueList.getValue(IndexNodo), auxIndicesList.getValue(IndexNodo));
+                        auxValueList.removeByPosition(IndexNodo);
+                        auxIndicesList.removeByPosition(IndexNodo);
+                        auxParent.Grade--;
+                        auxParent.addValue(auxLeftNodo.getValues().getValue(this.ValueList.getSize()-1),
+                                (Integer) auxLeftNodo.getIndices().getValue(this.IndicesList.getSize()-1));
+                        auxLeftNodo.ValueList.removeByPosition(this.ValueList.getSize()-1);
+                        auxLeftNodo.IndicesList.removeByPosition(this.IndicesList.getSize()-1);
+                        auxLeftNodo.Grade--;
+
+                        Nodo.NodosList.addEnd(auxLeftNodo.NodosList.getValue(this.NodosList.getSize()-1));
+                        auxLeftNodo.NodosList.removeByPosition(this.NodosList.getSize()-1);
+                        Nodo.redifineParent();
+                        return;
+                    }
+
+                }
+
 
                 //SI NO HAY NODOS HERMANOS QUE PUEDAN PRESTAR UN VALOR ENTONCES SE UNEN DOS HOJAS
                 if (IndexNodo + 1 < auxNodosList.getSize()) {
@@ -450,7 +504,7 @@ public class NodoMultiple<T> {
             }
         }
         //PARA NODO RAIZ
-        else  if (Nodo.Grade ==0) {
+        else  if (Nodo.Grade ==0 && Nodo.NodosList.getSize()!=1) {
             int IndexNodo = 0;
             try {
 

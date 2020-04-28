@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="365.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaces.Login">
+   <children>
+      <Label layoutX="131.0" layoutY="34.0" prefHeight="44.0" prefWidth="104.0" text="Login">
+         <font>
+            <Font name="Verdana" size="35.0" />
+         </font>
+      </Label>
+      <Label layoutX="27.0" layoutY="121.0" prefHeight="44.0" prefWidth="104.0" text="Usuario:">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="27.0" layoutY="250.0" prefHeight="44.0" prefWidth="104.0" text="Password:">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="passwordTxt" layoutX="27.0" layoutY="313.0" prefHeight="25.0" prefWidth="229.0" style="-fx-background-radius: 100;" />
+      <TextField fx:id="userTxt" layoutX="27.0" layoutY="192.0" prefHeight="25.0" prefWidth="229.0" style="-fx-background-radius: 100;" />
+      <Button layoutX="131.0" layoutY="403.0" mnemonicParsing="false" onAction="#login" prefHeight="35.0" prefWidth="104.0" style="-fx-background-radius: 100;" text="OK">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

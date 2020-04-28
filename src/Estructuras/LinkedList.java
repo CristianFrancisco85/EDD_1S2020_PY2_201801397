@@ -144,6 +144,9 @@ public class LinkedList<T> {
      * @throws Exception
      */
     public T getValue(int Position) throws Exception{
+        if(Position>=Size){
+            Position=Size-1;
+        }
         if(Position>=0 && Position<Size){
             if (Position == 0) {
                 return Head.getValue();

@@ -5,14 +5,17 @@ import Estructuras.BTree;
 public class CategoriaLibro<T> {
     BTree<T> BooksList;
     String Categoria;
+    int CarneCreador;
 
     public CategoriaLibro(){
         BooksList=new BTree<>(5);
         Categoria = null;
+        CarneCreador=0;
     }
     public CategoriaLibro(String arg1){
         BooksList=new BTree<>(5);
         Categoria = arg1;
+        CarneCreador=0;
     }
 
     public BTree<T> getBookList(){
@@ -23,6 +26,13 @@ public class CategoriaLibro<T> {
     }
     public String getCategoria(){
         return Categoria;
+    }
+
+    public void setCreador(int arg1){
+        this.CarneCreador=arg1;
+    }
+    public int getCreador(){
+        return  this.CarneCreador;
     }
 
     @Override

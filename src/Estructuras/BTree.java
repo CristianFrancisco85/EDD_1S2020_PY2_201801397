@@ -21,6 +21,42 @@ public class BTree<T> {
         Root=arg1;
     }
 
+    public boolean searchByIndex(NodoMultiple<T> Nodo,int SearchParam)throws Exception{
+        //SI EL NODO CONTIENE EL VALOR
+        if (Nodo==null){
+            return false;
+        }
+        if (Nodo.getIndices().search(SearchParam)){
+            return true;
+        }
+        else if(Nodo.getNodosList().getSize()!=0){
+
+            //SE OBTIENE NODO SEGUN EL RANGO
+            NodoMultiple<T> auxNodo=Nodo.getNodosList().getValue(Nodo.getRange(SearchParam));
+
+            //SE HACE LLAMADA RECURSIVA CON EL SIGUIENTE NODO
+            return searchByIndex(auxNodo,SearchParam);
+        }
+        else{
+            return false;
+        }
+    }
+
+    public T getValuebyIndex(NodoMultiple<T> Nodo,int SearchParam)throws Exception{
+        //SI EL NODO CONTIENE EL VALOR
+        if (Nodo.getIndices().search(SearchParam)){
+            int aux=Nodo.getIndices().getPosition(SearchParam);
+            return Nodo.getValues().getValue(aux);
+        }
+        else{
+
+            //SE OBTIENE NODO SEGUN EL RANGO
+            NodoMultiple<T> auxNodo=Nodo.getNodosList().getValue(Nodo.getRange(SearchParam));
+
+            //SE HACE LLAMADA RECURSIVA CON EL SIGUIENTE NODO
+            return getValuebyIndex(auxNodo,SearchParam);
+        }
+    }
 
     public NodoMultiple<T> add(NodoMultiple<T> Nodo,T Value,int InsertionParam) throws Exception{
 
@@ -47,7 +83,6 @@ public class BTree<T> {
                 auxNodo = add(auxNodo,Value,InsertionParam);
                 return Nodo;
             }
-
         }
 
 

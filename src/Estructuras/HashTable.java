@@ -37,6 +37,9 @@ public class HashTable<T> {
      * @param HashParam Valor a usar para calculo de posicion
      */
     public LinkedList getValue(int HashParam){
+        if(Table[hash(HashParam)]==null){
+            return null;
+        }
         if(Table[hash(HashParam)].getSize()!=0){
             return Table[hash(HashParam)];
         }
@@ -44,6 +47,7 @@ public class HashTable<T> {
             return null;
         }
     }
+
 
 
 

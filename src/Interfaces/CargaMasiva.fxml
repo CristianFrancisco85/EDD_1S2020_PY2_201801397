@@ -23,7 +23,7 @@
          <image>
             <Image url="@../Imagenes/user.png" />
          </image></ImageView>
-      <Button fx:id="usuariosBtn" layoutX="168.0" layoutY="185.0" mnemonicParsing="false" onAction="#cargarArchivoUsuarios" prefHeight="50.0" prefWidth="240.0" text="Usuarios">
+      <Button fx:id="usuariosBtn" layoutX="168.0" layoutY="185.0" mnemonicParsing="false" onAction="#cargarArchivoUsuarios" prefHeight="50.0" prefWidth="240.0" style="-fx-background-radius: 100;" text="Usuarios">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
@@ -33,7 +33,7 @@
             <Image url="@../Imagenes/libros.png" />
          </image>
       </ImageView>
-      <Button fx:id="librosBtn" layoutX="165.0" layoutY="316.0" mnemonicParsing="false" onAction="#cargarLibros" prefHeight="50.0" prefWidth="240.0" text="Libros">
+      <Button fx:id="librosBtn" layoutX="165.0" layoutY="316.0" mnemonicParsing="false" onAction="#cargarLibros" prefHeight="50.0" prefWidth="240.0" style="-fx-background-radius: 100;" text="Libros">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
