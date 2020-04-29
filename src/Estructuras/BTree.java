@@ -1,5 +1,6 @@
 package Estructuras;
 
+import Clases.Libro;
 import javafx.stage.FileChooser;
 
 import java.io.*;
@@ -108,6 +109,9 @@ public class BTree<T> {
 
     }
 
+    public void getAllValues(LinkedList<Libro> ListaLibros){
+        this.getRoot().getAllValues(ListaLibros);
+    }
 
     public void graphArbol(){
         FileChooser fileChooser = new FileChooser();

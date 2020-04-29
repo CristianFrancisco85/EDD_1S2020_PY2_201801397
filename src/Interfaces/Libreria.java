@@ -190,6 +190,23 @@ public class Libreria implements Initializable{
         }
     }
 
+    @FXML
+    public void VerCatalogo()throws IOException{
+
+        Stage stage = new Stage();
+        FXMLLoader loader =  new FXMLLoader();
+        loader.setLocation(getClass().getResource("Catalogo.fxml"));
+        Parent root = loader.load();
+        Catalogo controller = loader.<Catalogo>getController();
+        controller.setUser(User);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Catalogo de Libros");
+        stage.show();
+        Stage auxStage = (Stage)anchorPane.getScene().getWindow();
+        auxStage.setIconified(true);
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

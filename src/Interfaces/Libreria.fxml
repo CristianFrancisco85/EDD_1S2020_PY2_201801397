@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="AnchorPane" prefHeight="750.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaces.Libreria">
+<AnchorPane fx:id="anchorPane" prefHeight="750.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaces.Libreria">
    <children>
       <ImageView fitHeight="113.0" fitWidth="129.0" layoutX="24.0" layoutY="24.0" preserveRatio="true">
          <image>
@@ -98,32 +98,22 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="14.0" layoutY="31.0" mnemonicParsing="false" onAction="#AgregarLibro" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Agregar Libro">
+                        <Button layoutX="14.0" layoutY="56.0" mnemonicParsing="false" onAction="#AgregarLibro" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Agregar Libro">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
                         </Button>
-                        <Label layoutX="271.0" layoutY="46.0" prefHeight="20.0" prefWidth="394.0" text="Agrega un libro a la biblioteca virtual">
+                        <Label layoutX="263.0" layoutY="71.0" prefHeight="20.0" prefWidth="394.0" text="Agrega un libro a la biblioteca virtual">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button layoutX="14.0" layoutY="125.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Ver Catalogo">
+                        <Button layoutX="14.0" layoutY="178.0" mnemonicParsing="false" onAction="#VerCatalogo" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Ver Catalogo">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
                         </Button>
-                        <Label layoutX="271.0" layoutY="140.0" prefHeight="20.0" prefWidth="394.0" text="Muestra libros de la biblioteca virtual">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="14.0" layoutY="214.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Eliminar Libro">
-                           <font>
-                              <Font name="Verdana" size="14.0" />
-                           </font>
-                        </Button>
-                        <Label layoutX="271.0" layoutY="229.0" prefHeight="20.0" prefWidth="394.0" text="Elimina un libro de la biblioteca virtual">
+                        <Label layoutX="263.0" layoutY="193.0" prefHeight="20.0" prefWidth="394.0" text="Muestra libros de la biblioteca virtual">
                            <font>
                               <Font size="14.0" />
                            </font>

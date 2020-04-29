@@ -1,14 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Interfaces.Catalogo"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="715.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaces.Catalogo">
+   <children>
+      <ImageView fitHeight="113.0" fitWidth="129.0" layoutX="34.0" layoutY="34.0" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/usacLogo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="176.0" layoutY="69.0" prefHeight="44.0" prefWidth="177.0" text="Catalogo">
+         <font>
+            <Font name="Verdana" size="35.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="181.0" prefHeight="22.0" prefWidth="67.0" text="Buscar">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="isbnTxtS" layoutX="164.0" layoutY="209.0" prefHeight="25.0" prefWidth="185.0" style="-fx-background-radius: 100;" />
+      <TextField fx:id="tituloTxtS" layoutX="164.0" layoutY="245.0" prefHeight="25.0" prefWidth="185.0" style="-fx-background-radius: 100;" />
+      <Label layoutX="76.0" layoutY="211.0" prefHeight="22.0" prefWidth="76.0" text="Por ISBN">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="76.0" layoutY="248.0" prefHeight="22.0" prefWidth="76.0" text="Por Titulo">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="363.0" layoutY="209.0" mnemonicParsing="false" onAction="#buscarISBN" style="-fx-background-radius: 100;" text="OK" />
+      <Button layoutX="363.0" layoutY="246.0" mnemonicParsing="false" onAction="#buscarNombre" style="-fx-background-radius: 100;" text="OK" />
+      <Button layoutX="646.0" layoutY="217.0" mnemonicParsing="false" onAction="#getCatalogo" prefHeight="35.0" prefWidth="135.0" style="-fx-background-radius: 100;" text="Ver Catalogo" />
+      <Label layoutX="28.0" layoutY="348.0" prefHeight="22.0" prefWidth="50.0" text="ISBN">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="385.0" prefHeight="22.0" prefWidth="67.0" text="Titulo">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="422.0" prefHeight="22.0" prefWidth="67.0" text="Autor">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="458.0" prefHeight="22.0" prefWidth="67.0" text="Editorial">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="495.0" prefHeight="22.0" prefWidth="67.0" text="Año">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="534.0" prefHeight="22.0" prefWidth="67.0" text="Edicion">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="573.0" prefHeight="22.0" prefWidth="99.0" text="Categoria">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="608.0" prefHeight="22.0" prefWidth="67.0" text="Idioma">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="644.0" prefHeight="22.0" prefWidth="130.0" text="Carnet Creador">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="isbnTxt" layoutX="164.0" layoutY="347.0" prefHeight="25.0" prefWidth="185.0" style="-fx-background-radius: 100;" />
+      <TextField fx:id="tituloTxt" layoutX="164.0" layoutY="384.0" prefHeight="25.0" prefWidth="185.0" style="-fx-background-radius: 100;" />
+      <TextField fx:id="autorTxt" layoutX="164.0" layoutY="421.0" prefHeight="25.0" prefWidth="185.0" style="-fx-background-radius: 100;" />
+      <TextField fx:id="editorialTxt" layoutX="164.0" layoutY="457.0" prefHeight="25.0" prefWidth="185.0" style="-fx-background-radius: 100;" />
+      <TextField fx:id="yearTxt" layoutX="164.0" layoutY="494.0" prefHeight="25.0" prefWidth="185.0" style="-fx-background-radius: 100;" />
+      <TextField fx:id="edicionTxt" layoutX="164.0" layoutY="533.0" prefHeight="25.0" prefWidth="185.0" style="-fx-background-radius: 100;" />
+      <TextField fx:id="categoriaTxt" layoutX="164.0" layoutY="572.0" prefHeight="25.0" prefWidth="185.0" style="-fx-background-radius: 100;" />
+      <TextField fx:id="idiomaTxt" layoutX="164.0" layoutY="607.0" prefHeight="25.0" prefWidth="185.0" style="-fx-background-radius: 100;" />
+      <TextField fx:id="carnetTxt" layoutX="164.0" layoutY="643.0" prefHeight="25.0" prefWidth="185.0" style="-fx-background-radius: 100;" />
+      <Label layoutX="411.0" layoutY="313.0" prefHeight="22.0" prefWidth="91.0" text="Acciones:">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="antBtn" layoutX="411.0" layoutY="367.0" mnemonicParsing="false" onAction="#anteriorLibro" prefHeight="35.0" prefWidth="135.0" style="-fx-background-radius: 100;" text="Anterior Libro" />
+      <Button fx:id="sigBtn" layoutX="578.0" layoutY="368.0" mnemonicParsing="false" onAction="#siguienteLibro" prefHeight="35.0" prefWidth="135.0" style="-fx-background-radius: 100;" text="Siguiente Libro" />
+      <Button layoutX="493.0" layoutY="427.0" mnemonicParsing="false" onAction="#eliminarLibro" prefHeight="35.0" prefWidth="135.0" style="-fx-background-radius: 100;" text="Eliminar Libro" />
+      <ComboBox fx:id="categoriaCMB" layoutX="445.0" layoutY="221.0" prefWidth="150.0" />
+      <Label layoutX="445.0" layoutY="181.0" prefHeight="22.0" prefWidth="121.0" text="Categorias">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>

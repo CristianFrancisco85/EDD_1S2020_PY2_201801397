@@ -114,6 +114,32 @@ public class NodoMultiple<T> {
     }
 
     /**
+     * Obtiene todos los valores del arbol en la lista
+     * @param ListaLibros Lista donde se almacenaran los libros
+     */
+    public void getAllValues(LinkedList<Libro> ListaLibros){
+
+        for(int i=0;i<this.getIndices().getSize();i++){
+            try {
+                Libro auxLibro = (Libro)this.getValues().getValue(i);
+                ListaLibros.addBegin(auxLibro);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        for(int i=0;i<this.getNodosList().getSize();i++){
+            try {
+                this.getNodosList().getValue(i).getAllValues(ListaLibros);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
      * Obtiene lista de Valores
      * @return Lista de Valores
      */
@@ -573,7 +599,6 @@ public class NodoMultiple<T> {
         }
 
     }
-
 
 
     /**
