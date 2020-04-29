@@ -19,22 +19,32 @@
             <Image url="@../Imagenes/usacLogo.png" />
          </image>
       </ImageView>
-      <Button fx:id="usuariosBtn" layoutX="166.0" layoutY="175.0" mnemonicParsing="false" onAction="#graficarUsuarios" prefHeight="40.0" prefWidth="300.0" text="Tabla de Dispersion -- Usuarios">
+      <Button fx:id="usuariosBtn" layoutX="166.0" layoutY="170.0" mnemonicParsing="false" onAction="#graficarUsuarios" prefHeight="40.0" prefWidth="300.0" style="-fx-background-radius: 100;" text="Tabla de Dispersion -- Usuarios">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
       </Button>
-      <ImageView fitHeight="80.0" fitWidth="70.0" layoutX="36.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="36.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Imagenes/user.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="84.0" fitWidth="100.0" layoutX="29.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="84.0" fitWidth="60.0" layoutX="36.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Imagenes/libros.png" />
          </image>
       </ImageView>
-      <Button fx:id="librosBtn" layoutX="166.0" layoutY="286.0" mnemonicParsing="false" onAction="#graficarLibros" prefHeight="40.0" prefWidth="300.0" text="Arbol AVL -- Libros">
+      <Button fx:id="librosBtn" layoutX="166.0" layoutY="254.0" mnemonicParsing="false" onAction="#graficarLibros" prefHeight="40.0" prefWidth="300.0" style="-fx-background-radius: 100;" text="Arbol AVL -- Libros">
+         <font>
+            <Font name="Verdana" size="16.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="84.0" fitWidth="60.0" layoutX="36.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/libros.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="166.0" layoutY="347.0" mnemonicParsing="false" onAction="#graficarCategoria" prefHeight="40.0" prefWidth="300.0" style="-fx-background-radius: 100;" text="Arbol B -- Categorias">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>

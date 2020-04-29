@@ -22,10 +22,11 @@ public class BTree<T> {
     }
 
     public boolean searchByIndex(NodoMultiple<T> Nodo,int SearchParam)throws Exception{
-        //SI EL NODO CONTIENE EL VALOR
+
         if (Nodo==null){
             return false;
         }
+        //SI EL NODO CONTIENE EL VALOR
         if (Nodo.getIndices().search(SearchParam)){
             return true;
         }

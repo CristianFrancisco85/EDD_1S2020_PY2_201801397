@@ -68,7 +68,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="14.0" layoutY="45.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Agregar Categoria">
+                        <Button layoutX="14.0" layoutY="45.0" mnemonicParsing="false" onAction="#AgregarCatergoria" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Agregar Categoria">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
@@ -78,22 +78,12 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button layoutX="14.0" layoutY="135.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Eliminar Categoria">
+                        <Button layoutX="14.0" layoutY="179.0" mnemonicParsing="false" onAction="#EliminarCategoria" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Eliminar Categoria">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
                         </Button>
-                        <Label layoutX="247.0" layoutY="150.0" prefHeight="20.0" prefWidth="394.0" text="Elimina una categoria la biblioteca virtual">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="14.0" layoutY="223.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Reporte Categoria">
-                           <font>
-                              <Font name="Verdana" size="14.0" />
-                           </font>
-                        </Button>
-                        <Label layoutX="247.0" layoutY="238.0" prefHeight="20.0" prefWidth="394.0" text="Genera Arbol B de la categoria indicada">
+                        <Label layoutX="247.0" layoutY="194.0" prefHeight="20.0" prefWidth="394.0" text="Elimina una categoria de la biblioteca virtual">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -108,7 +98,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="14.0" layoutY="31.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Agregar Libro">
+                        <Button layoutX="14.0" layoutY="31.0" mnemonicParsing="false" onAction="#AgregarLibro" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Agregar Libro">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
@@ -118,17 +108,40 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button layoutX="14.0" layoutY="135.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Ver Catalogo">
+                        <Button layoutX="14.0" layoutY="125.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Ver Catalogo">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
                         </Button>
+                        <Label layoutX="271.0" layoutY="140.0" prefHeight="20.0" prefWidth="394.0" text="Muestra libros de la biblioteca virtual">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="14.0" layoutY="214.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Eliminar Libro">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="271.0" layoutY="229.0" prefHeight="20.0" prefWidth="394.0" text="Elimina un libro de la biblioteca virtual">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
                      </children></AnchorPane>
             </content>
                <font>
                   <Font name="Verdana" size="16.0" />
                </font>
           </TitledPane>
+            <TitledPane animated="false" text="Blockchain">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+               <font>
+                  <Font name="Verdana" size="16.0" />
+               </font>
+            </TitledPane>
         </panes>
       </Accordion>
    </children>

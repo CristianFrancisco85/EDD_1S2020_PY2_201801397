@@ -22,8 +22,8 @@ public class AVLTree<T,B> {
     /**
      * Inserta un valor al arbol
      * @param Nodo Nodo sobre el cual se ejecuta el metodo
-     * @param Value Objeto a Insertar
-     * @param InsertionParam Valor por el cual se insertara en arbol
+     * @param Value Objeto a Insertar en Arbol B del nodo del Arbol AVL
+     * @param InsertionParam Valor por el cual se insertara en Arbol AVL
      */
     public NodoBinario<T> add(NodoBinario<T> Nodo, B Value,String InsertionParam){
 
@@ -60,6 +60,72 @@ public class AVLTree<T,B> {
             //aux.getBookList().printBTree(aux.getBookList().getRoot());
             return Nodo;
         }
+
+        //SE CALCULA DE NUEVO LA ALTURA
+        if(Nodo.getRightNodo()==null && Nodo.getLeftNodo()==null){
+            Nodo.setHeight(1);
+        }
+        else if(Nodo.getRightNodo()==null && Nodo.getLeftNodo()!=null){
+            Nodo.setHeight( 1 +Nodo.getLeftNodo().getHeight());
+        }
+        else if(Nodo.getLeftNodo()==null && Nodo.getRightNodo()!=null){
+            Nodo.setHeight( 1 +Nodo.getRightNodo().getHeight());
+        }
+        else{
+            Nodo.setHeight( 1 + Math.max(Nodo.getRightNodo().getHeight(),Nodo.getLeftNodo().getHeight()) );
+        }
+
+
+        //SE BALANCEA ARBOL
+
+        int factorBalance = getFactorBalance(Nodo);
+
+        // Caso Left Left
+        if (factorBalance > 1 && InsertionParam.compareTo(Nodo.getLeftNodo().getValueParam())<0){
+            return rightRotate(Nodo);
+        }
+
+        // Caso Left Right
+        if (factorBalance > 1 && InsertionParam.compareTo(Nodo.getLeftNodo().getValueParam())>0) {
+            Nodo.setLeftNodo(leftRotate(Nodo.getLeftNodo()));
+            return rightRotate(Nodo);
+        }
+
+        // Caso Right Right
+        if (factorBalance < -1 && InsertionParam.compareTo(Nodo.getRightNodo().getValueParam())>0){
+            return leftRotate(Nodo);
+        }
+
+        // Caso Right Left
+        if (factorBalance < -1 && InsertionParam.compareTo(Nodo.getRightNodo().getValueParam())<0) {
+            Nodo.setRightNodo(rightRotate(Nodo.getRightNodo()));
+            return leftRotate(Nodo);
+        }
+
+        return Nodo;
+    }
+
+    /**
+     * Inserta un valor al arbol
+     * @param Nodo Nodo sobre el cual se ejecuta el metodo
+     * @param InsertionParam Valor por el cual se insertara en Arbol AVL
+     */
+    public NodoBinario<T> add(NodoBinario<T> Nodo, CategoriaLibro<Libro> Value,String InsertionParam){
+
+        //SE HACE INSERCION
+        if (Nodo == null) {
+            System.out.println("Nuevo Nodo en AVL: "+InsertionParam);
+            return new NodoBinario(Value);
+        }
+
+        //SE BUSCA POSICION DE INSERCION
+        if (InsertionParam.compareTo(Nodo.getValueParam())>0) {
+            Nodo.setRightNodo(add(Nodo.getRightNodo(),Value,InsertionParam));
+        }
+        else if (InsertionParam.compareTo(Nodo.getValueParam())<0) {
+            Nodo.setLeftNodo(add(Nodo.getLeftNodo(),Value,InsertionParam));
+        }
+
 
         //SE CALCULA DE NUEVO LA ALTURA
         if(Nodo.getRightNodo()==null && Nodo.getLeftNodo()==null){
@@ -204,12 +270,35 @@ public class AVLTree<T,B> {
 
     /**
      * Busca si existe un elemento
-     * @param SearchParam Parametro sobre el que se hara la bisquedad
+     * @param SearchParam Parametro sobre el que se hara la busquedad
+     * @return Objeto si la busqueda es exitosa de lo contrario null
      */
-    public NodoBinario<T> search(NodoBinario<T> Nodo,String SearchParam){
+    public NodoBinario<T> getValue(NodoBinario<T> Nodo,String SearchParam){
 
         if (Nodo == null) {
             return Nodo;
+        }
+        //SE BUSCA POSICION DE INSERCION
+        if (SearchParam.compareTo(Nodo.getValueParam())>0) {
+            return  getValue(Nodo.getRightNodo(),SearchParam);
+        }
+        else if (SearchParam.compareTo(Nodo.getValueParam())<0) {
+            return  getValue(Nodo.getLeftNodo(),SearchParam);
+        }
+        else{
+            return Nodo;
+        }
+    }
+
+    /**
+     * Busca si existe un elemento
+     * @param SearchParam Parametro sobre el que se hara la busquedad
+     * @return true si existe de lo contrario false
+     */
+    public boolean search(NodoBinario<T> Nodo,String SearchParam){
+
+        if (Nodo == null) {
+            return false;
         }
         //SE BUSCA POSICION DE INSERCION
         if (SearchParam.compareTo(Nodo.getValueParam())>0) {
@@ -219,34 +308,8 @@ public class AVLTree<T,B> {
             return  search(Nodo.getLeftNodo(),SearchParam);
         }
         else{
-            return Nodo;
+            return true;
         }
-    }
-
-
-    /**
-     * Regresa el factor de balance de un nodo
-     * @param Nodo Nodo spbre el cual se calcula el factor de balance
-     * @return Factor de Balance
-     */
-    private int getFactorBalance(NodoBinario<T> Nodo) {
-        if (Nodo == null){
-            return 0;
-        }
-        //SE RETORNA LA RESTA DE LAS ALTURAS
-        if(Nodo.getRightNodo()==null && Nodo.getLeftNodo()==null){
-            return 0;
-        }
-        else if(Nodo.getRightNodo()==null && Nodo.getLeftNodo()!=null){
-            return Nodo.getLeftNodo().getHeight() - 0;
-        }
-        else if(Nodo.getLeftNodo()==null && Nodo.getRightNodo()!=null){
-            return 0 - Nodo.getRightNodo().getHeight();
-        }
-        else{
-            return Nodo.getLeftNodo().getHeight() - Nodo.getRightNodo().getHeight();
-        }
-
     }
 
     /**
@@ -256,7 +319,6 @@ public class AVLTree<T,B> {
     public NodoBinario<T> getRoot(){
         return Root;
     }
-
 
     public void setRoot(NodoBinario<T> arg1){
         this.Root=arg1;
@@ -430,4 +492,28 @@ public class AVLTree<T,B> {
 
     }
 
+    /**
+     * Regresa el factor de balance de un nodo
+     * @param Nodo Nodo spbre el cual se calcula el factor de balance
+     * @return Factor de Balance
+     */
+    private int getFactorBalance(NodoBinario<T> Nodo) {
+        if (Nodo == null){
+            return 0;
+        }
+        //SE RETORNA LA RESTA DE LAS ALTURAS
+        if(Nodo.getRightNodo()==null && Nodo.getLeftNodo()==null){
+            return 0;
+        }
+        else if(Nodo.getRightNodo()==null && Nodo.getLeftNodo()!=null){
+            return Nodo.getLeftNodo().getHeight() - 0;
+        }
+        else if(Nodo.getLeftNodo()==null && Nodo.getRightNodo()!=null){
+            return 0 - Nodo.getRightNodo().getHeight();
+        }
+        else{
+            return Nodo.getLeftNodo().getHeight() - Nodo.getRightNodo().getHeight();
+        }
+
+    }
 }
