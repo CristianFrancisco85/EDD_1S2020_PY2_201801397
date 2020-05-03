@@ -98,22 +98,32 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="14.0" layoutY="56.0" mnemonicParsing="false" onAction="#AgregarLibro" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Agregar Libro">
+                        <Button layoutX="14.0" layoutY="31.0" mnemonicParsing="false" onAction="#AgregarLibro" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Agregar Libro">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
                         </Button>
-                        <Label layoutX="263.0" layoutY="71.0" prefHeight="20.0" prefWidth="394.0" text="Agrega un libro a la biblioteca virtual">
+                        <Label layoutX="263.0" layoutY="46.0" prefHeight="20.0" prefWidth="394.0" text="Agrega un libro a la biblioteca virtual">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button layoutX="14.0" layoutY="178.0" mnemonicParsing="false" onAction="#VerCatalogo" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Ver Catalogo">
+                        <Button layoutX="14.0" layoutY="119.0" mnemonicParsing="false" onAction="#VerCatalogo" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Ver Catalogo">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
                         </Button>
-                        <Label layoutX="263.0" layoutY="193.0" prefHeight="20.0" prefWidth="394.0" text="Muestra libros de la biblioteca virtual">
+                        <Label layoutX="263.0" layoutY="134.0" prefHeight="20.0" prefWidth="394.0" text="Muestra libros de la biblioteca virtual">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="14.0" layoutY="203.0" mnemonicParsing="false" onAction="#cargarLibros" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Carga Masiva">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="263.0" layoutY="218.0" prefHeight="20.0" prefWidth="394.0" text="Realiza una carga masiva a traves de un archivo JSON">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -124,9 +134,26 @@
                   <Font name="Verdana" size="16.0" />
                </font>
           </TitledPane>
-            <TitledPane animated="false" text="Blockchain">
+            <TitledPane animated="false" text="Reportes">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="usuariosBtn" layoutX="21.0" layoutY="39.0" mnemonicParsing="false" onAction="#graficarUsuarios" prefHeight="40.0" prefWidth="300.0" style="-fx-background-radius: 100;" text="Tabla de Dispersion -- Usuarios">
+                           <font>
+                              <Font name="Verdana" size="16.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="librosBtn" layoutX="21.0" layoutY="124.0" mnemonicParsing="false" onAction="#graficarLibros" prefHeight="40.0" prefWidth="300.0" style="-fx-background-radius: 100;" text="Arbol AVL -- Libros">
+                           <font>
+                              <Font name="Verdana" size="16.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="21.0" layoutY="212.0" mnemonicParsing="false" onAction="#graficarCategoria" prefHeight="40.0" prefWidth="300.0" style="-fx-background-radius: 100;" text="Arbol B -- Categorias">
+                           <font>
+                              <Font name="Verdana" size="16.0" />
+                           </font>
+                        </Button>
+                     </children></AnchorPane>
               </content>
                <font>
                   <Font name="Verdana" size="16.0" />

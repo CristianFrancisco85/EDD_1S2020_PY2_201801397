@@ -67,57 +67,6 @@ public class CargaMasiva implements Initializable{
         }
     }
 
-    @FXML
-    public void cargarLibros(){
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Cargar Libros");
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Archivo JSON","*.json"));
-        File selectedFile = fileChooser.showOpenDialog(null);
-        if(selectedFile!=null){
-            String FileName = selectedFile.getAbsolutePath();
-
-            try {
-                Reader reader = new FileReader(FileName);
-                JSONParser parser = new JSONParser();
-                JSONObject jsonObject = (JSONObject) parser.parse(reader);
-                System.out.println(jsonObject);
-                JSONArray LibrosList = (JSONArray) jsonObject.get("libros");
-                Iterator<JSONObject> iterator = LibrosList.iterator();
-                JSONObject auxJSONObject;
-                Libro tempLibro;
-                CategoriaLibro<Libro> TempCategoria;
-                while (iterator.hasNext()) {
-                    auxJSONObject = iterator.next();
-                    tempLibro = new Libro();
-                    tempLibro.setISBN((int)((long) auxJSONObject.get("ISBN")));
-                    tempLibro.setYear((int)((long) auxJSONObject.get("Año")));
-                    tempLibro.setIdioma((String) auxJSONObject.get("Idioma"));
-                    tempLibro.setTitulo((String) auxJSONObject.get("Titulo"));
-                    tempLibro.setEditorial((String) auxJSONObject.get("Editorial"));
-                    tempLibro.setAutor((String) auxJSONObject.get("Autor"));
-                    tempLibro.setEdicion((int)((long) auxJSONObject.get("Edicion")));
-                    tempLibro.setCategoria((String) auxJSONObject.get("Categoria"));
-                    TempCategoria=new CategoriaLibro<>();
-                    TempCategoria.setCategoria((String)auxJSONObject.get("Categoria"));
-                    Data.getCategoriasStructure().setRoot(
-                    Data.getCategoriasStructure().add(Data.getCategoriasStructure().getRoot(),tempLibro,TempCategoria.getCategoria()));
-                }
-                System.out.println("LIBROS CARGADOS");
-
-            }
-            catch (FileNotFoundException e){
-                e.printStackTrace();
-            }
-            catch (IOException e){
-                e.printStackTrace();
-            }
-            catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

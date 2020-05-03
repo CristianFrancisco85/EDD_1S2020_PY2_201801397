@@ -44,20 +44,7 @@ public class MenuController implements Initializable{
         Stage auxStage = (Stage)MyPane.getScene().getWindow();
         auxStage.setIconified(true);
     }
-
-    @FXML
-    public void showReportes() throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader loader =  new FXMLLoader();
-        loader.setLocation(getClass().getResource("Reportes.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Reportes");
-        stage.show();
-        Stage auxStage = (Stage)MyPane.getScene().getWindow();
-        auxStage.setIconified(true);
-    }
+    
 
 
     @Override

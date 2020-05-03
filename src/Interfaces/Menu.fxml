@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="MyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaces.MenuController">
+<Pane fx:id="MyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaces.MenuController">
    <children>
       <Label layoutX="156.0" layoutY="49.0" prefHeight="44.0" prefWidth="104.0" text="Menu">
          <font>
@@ -24,14 +24,9 @@
             <Image url="@../Imagenes/archivo.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="84.0" fitWidth="100.0" layoutX="28.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="84.0" fitWidth="100.0" layoutX="29.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Imagenes/libros.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="183.0" fitWidth="100.0" layoutX="21.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Imagenes/reporte.png" />
          </image>
       </ImageView>
       <Button fx:id="cargaBtn" layoutX="156.0" layoutY="186.0" mnemonicParsing="false" onAction="#showCargaMasiva" prefHeight="50.0" prefWidth="225.0" style="-fx-background-radius: 100;" text="Carga Masiva">
@@ -39,12 +34,7 @@
             <Font name="Verdana" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="reportesBtn" layoutX="156.0" layoutY="306.0" mnemonicParsing="false" onAction="#showLibreria" prefHeight="50.0" prefWidth="225.0" style="-fx-background-radius: 100;" text="Libreria">
-         <font>
-            <Font name="Verdana" size="16.0" />
-         </font>
-      </Button>
-      <Button layoutX="156.0" layoutY="441.0" mnemonicParsing="false" onAction="#showReportes" prefHeight="50.0" prefWidth="225.0" style="-fx-background-radius: 100;" text="Reportes">
+      <Button fx:id="reportesBtn" layoutX="164.0" layoutY="331.0" mnemonicParsing="false" onAction="#showLibreria" prefHeight="50.0" prefWidth="225.0" style="-fx-background-radius: 100;" text="Libreria">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
