@@ -211,7 +211,7 @@ public class Libreria implements Initializable{
 
     @FXML
     public void graficarUsuarios(){
-
+        Data.getUsuariosStructure().graphTable();
     }
 
     @FXML
@@ -245,6 +245,21 @@ public class Libreria implements Initializable{
                     result.get()).getValue().getBookList().graphArbol();
         }
 
+    }
+
+    @FXML
+    public void graficarCategoriaPreOrder(){
+        Data.getCategoriasStructure().graphPreOrder();
+    }
+
+    @FXML
+    public void graficarCategoriaInOrder(){
+        Data.getCategoriasStructure().graphInOrder();
+    }
+
+    @FXML
+    public void graficarCategoriaPostOrder(){
+        Data.getCategoriasStructure().graphPostOrder();
     }
 
     @FXML

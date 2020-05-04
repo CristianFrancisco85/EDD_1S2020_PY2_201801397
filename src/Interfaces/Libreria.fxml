@@ -138,19 +138,34 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="usuariosBtn" layoutX="21.0" layoutY="39.0" mnemonicParsing="false" onAction="#graficarUsuarios" prefHeight="40.0" prefWidth="300.0" style="-fx-background-radius: 100;" text="Tabla de Dispersion -- Usuarios">
+                        <Button fx:id="usuariosBtn" layoutX="21.0" layoutY="26.0" mnemonicParsing="false" onAction="#graficarUsuarios" prefHeight="40.0" prefWidth="300.0" style="-fx-background-radius: 100;" text="Tabla de Dispersion -- Usuarios">
                            <font>
                               <Font name="Verdana" size="16.0" />
                            </font>
                         </Button>
-                        <Button fx:id="librosBtn" layoutX="21.0" layoutY="124.0" mnemonicParsing="false" onAction="#graficarLibros" prefHeight="40.0" prefWidth="300.0" style="-fx-background-radius: 100;" text="Arbol AVL -- Libros">
+                        <Button fx:id="librosBtn" layoutX="21.0" layoutY="89.0" mnemonicParsing="false" onAction="#graficarLibros" prefHeight="40.0" prefWidth="300.0" style="-fx-background-radius: 100;" text="Arbol AVL -- Libros">
                            <font>
                               <Font name="Verdana" size="16.0" />
                            </font>
                         </Button>
-                        <Button layoutX="21.0" layoutY="212.0" mnemonicParsing="false" onAction="#graficarCategoria" prefHeight="40.0" prefWidth="300.0" style="-fx-background-radius: 100;" text="Arbol B -- Categorias">
+                        <Button layoutX="21.0" layoutY="159.0" mnemonicParsing="false" onAction="#graficarCategoria" prefHeight="40.0" prefWidth="300.0" style="-fx-background-radius: 100;" text="Arbol B -- Categorias">
                            <font>
                               <Font name="Verdana" size="16.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="334.0" layoutY="94.0" mnemonicParsing="false" onAction="#graficarCategoriaPreOrder" prefHeight="30.0" prefWidth="110.0" style="-fx-background-radius: 100;" text="PreOrden">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="458.0" layoutY="94.0" mnemonicParsing="false" onAction="#graficarCategoriaInOrder" prefHeight="30.0" prefWidth="110.0" style="-fx-background-radius: 100;" text="InOrden">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="582.0" layoutY="94.0" mnemonicParsing="false" onAction="#graficarCategoriaPostOrder" prefHeight="30.0" prefWidth="110.0" style="-fx-background-radius: 100;" text="PostOrden">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
                            </font>
                         </Button>
                      </children></AnchorPane>

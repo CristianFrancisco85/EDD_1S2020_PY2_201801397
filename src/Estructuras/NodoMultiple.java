@@ -114,7 +114,7 @@ public class NodoMultiple<T> {
     }
 
     /**
-     * Obtiene todos los valores del arbol en la lista
+     * Obtiene todos los valores del arbol
      * @param ListaLibros Lista donde se almacenaran los libros
      */
     public void getAllValues(LinkedList<Libro> ListaLibros){

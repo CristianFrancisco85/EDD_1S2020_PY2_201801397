@@ -375,6 +375,137 @@ public class AVLTree<T,B> {
 
     }
 
+    public void graphInOrder(){
+        LinkedList<NodoBinario<T>> NodosList=new LinkedList();
+        this.getInOrdenList(this.Root,NodosList);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Guardar Arbol AVL InOrder");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Archivo DOT","*.dot"));
+        File selectedFile = fileChooser.showSaveDialog(null);
+        if(selectedFile!=null){
+            try{
+                FileWriter w = new FileWriter(selectedFile);
+                BufferedWriter bw = new BufferedWriter(w);
+                PrintWriter wr = new PrintWriter(bw);
+                wr.write("digraph{\n");
+                wr.write("node [shape=box]");
+                wr.write("rankdir=LR;");
+
+                for(int i=0;i<NodosList.getSize();i++){
+                    if(i<NodosList.getSize()-1){
+                        wr.write("\""+NodosList.getValue(i).getValue().toString()+"\"");
+                        wr.write("->");
+                        wr.write("\""+NodosList.getValue(i+1).getValue().toString()+"\"\n");
+                    }
+                }
+                wr.append("}");
+                wr.close();
+                bw.close();
+                ProcessBuilder pbuilder;
+                String Ruta = selectedFile.getAbsolutePath().replace(".dot","");
+                pbuilder = new ProcessBuilder("dot", "-Tpng", "-o", Ruta+".png ",Ruta+".dot");
+                pbuilder.redirectErrorStream(true);
+                pbuilder.start();
+
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+
+    public void graphPostOrder(){
+        LinkedList<NodoBinario<T>> NodosList=new LinkedList();
+        this.getPostOrdenList(this.Root,NodosList);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Guardar Arbol AVL PostOrder");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Archivo DOT","*.dot"));
+        File selectedFile = fileChooser.showSaveDialog(null);
+        if(selectedFile!=null){
+            try{
+                FileWriter w = new FileWriter(selectedFile);
+                BufferedWriter bw = new BufferedWriter(w);
+                PrintWriter wr = new PrintWriter(bw);
+                wr.write("digraph{\n");
+                wr.write("node [shape=box]");
+                wr.write("rankdir=LR;");
+
+                for(int i=0;i<NodosList.getSize();i++){
+                    if(i<NodosList.getSize()-1){
+                        wr.write("\""+NodosList.getValue(i).getValue().toString()+"\"");
+                        wr.write("->");
+                        wr.write("\""+NodosList.getValue(i+1).getValue().toString()+"\"\n");
+                    }
+                }
+                wr.append("}");
+                wr.close();
+                bw.close();
+                ProcessBuilder pbuilder;
+                String Ruta = selectedFile.getAbsolutePath().replace(".dot","");
+                pbuilder = new ProcessBuilder("dot", "-Tpng", "-o", Ruta+".png ",Ruta+".dot");
+                pbuilder.redirectErrorStream(true);
+                pbuilder.start();
+
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+
+    public void graphPreOrder(){
+        LinkedList<NodoBinario<T>> NodosList=new LinkedList();
+        this.getPreOrdenList(this.Root,NodosList);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Guardar Arbol AVL PreOrder");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Archivo DOT","*.dot"));
+        File selectedFile = fileChooser.showSaveDialog(null);
+        if(selectedFile!=null){
+            try{
+                FileWriter w = new FileWriter(selectedFile);
+                BufferedWriter bw = new BufferedWriter(w);
+                PrintWriter wr = new PrintWriter(bw);
+                wr.write("digraph{\n");
+                wr.write("node [shape=box]");
+                wr.write("rankdir=LR;");
+
+                for(int i=0;i<NodosList.getSize();i++){
+                    if(i<NodosList.getSize()-1){
+                        wr.write("\""+NodosList.getValue(i).getValue().toString()+"\"");
+                        wr.write("->");
+                        wr.write("\""+NodosList.getValue(i+1).getValue().toString()+"\"\n");
+                    }
+                }
+                wr.append("}");
+                wr.close();
+                bw.close();
+                ProcessBuilder pbuilder;
+                String Ruta = selectedFile.getAbsolutePath().replace(".dot","");
+                pbuilder = new ProcessBuilder("dot", "-Tpng", "-o", Ruta+".png ",Ruta+".dot");
+                pbuilder.redirectErrorStream(true);
+                pbuilder.start();
+
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+    }
 
 
     public void getPreOrdenList(NodoBinario<T> Raiz,LinkedList<NodoBinario<T>> Lista){

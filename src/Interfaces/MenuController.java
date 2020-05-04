@@ -44,7 +44,7 @@ public class MenuController implements Initializable{
         Stage auxStage = (Stage)MyPane.getScene().getWindow();
         auxStage.setIconified(true);
     }
-    
+
 
 
     @Override

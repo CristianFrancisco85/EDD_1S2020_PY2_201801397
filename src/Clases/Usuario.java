@@ -72,5 +72,10 @@ public class Usuario {
         return Password;
     }
 
+    @Override
+    public String toString(){
+        return this.getCarnet()+"\n"+this.getNombre()+"\n"+this.getApellido();
+    }
+
 
 }
