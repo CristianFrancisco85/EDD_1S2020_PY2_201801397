@@ -5,6 +5,7 @@ import Clases.Data;
 import Clases.Libro;
 import Clases.Usuario;
 import Dialogos.EditarPerfil;
+import Estructuras.Bloque;
 import Estructuras.LinkedList;
 import Estructuras.NodoBinario;
 import javafx.fxml.FXML;
@@ -31,6 +32,8 @@ import java.util.*;
 public class Libreria implements Initializable{
 
     public static int User;
+
+    public static Bloque tempBloque;
 
     @FXML
     AnchorPane anchorPane;
@@ -85,6 +88,7 @@ public class Libreria implements Initializable{
                 try {
                     if (AuxList.getValue(i).getCarnet()==User) {
                         AuxList.removeByPosition(i);
+                        Libreria.tempBloque.newEliminarUsuario(User);
                         break;
                     }
                 }
@@ -104,7 +108,7 @@ public class Libreria implements Initializable{
     }
 
     @FXML
-    public void AgregarCatergoria(){
+    public void AgregarCategoria(){
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Categorias");
         dialog.setHeaderText("Agregar Categoria");
@@ -126,6 +130,7 @@ public class Libreria implements Initializable{
                 Data.getCategoriasStructure().setRoot(
                         Data.getCategoriasStructure().add(Data.getCategoriasStructure().getRoot(),AuxCategoria,AuxCategoria.getCategoria())
                 );
+                tempBloque.newCrearCategoria(AuxCategoria);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Categorias");
                 alert.setHeaderText(null);
@@ -166,6 +171,7 @@ public class Libreria implements Initializable{
             Optional<ButtonType> result2 = alert.showAndWait();
             if (result2.get() == ButtonType.OK){
                 Data.getCategoriasStructure().delete(Data.getCategoriasStructure().getRoot(),result.get());
+                tempBloque.newEliminarCategoria(result.get());
                 alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Informacion");
                 alert.setHeaderText(null);
@@ -297,6 +303,7 @@ public class Libreria implements Initializable{
                     TempCategoria.setCategoria((String)auxJSONObject.get("Categoria"));
                     Data.getCategoriasStructure().setRoot(
                             Data.getCategoriasStructure().add(Data.getCategoriasStructure().getRoot(),tempLibro,TempCategoria.getCategoria()));
+                    tempBloque.newCrearLibro(tempLibro);
                 }
                 System.out.println("LIBROS CARGADOS");
 
@@ -314,9 +321,15 @@ public class Libreria implements Initializable{
 
     }
 
+    @FXML
+    public void crearBloque(){
+        tempBloque.createBlock();
+        tempBloque=new Bloque();
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        tempBloque= new Bloque();
     }
 }

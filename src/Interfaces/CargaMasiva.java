@@ -1,9 +1,8 @@
 package Interfaces;
 
-import Clases.CategoriaLibro;
 import Clases.Data;
-import Clases.Libro;
 import Clases.Usuario;
+import Estructuras.Bloque;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.stage.FileChooser;
@@ -39,6 +38,7 @@ public class CargaMasiva implements Initializable{
                  Iterator<JSONObject> iterator = UsuariosList.iterator();
                  JSONObject auxJSONObject;
                  Usuario tempUsuario;
+                 Bloque auxBloque = new Bloque();
                  while (iterator.hasNext()) {
                      auxJSONObject = iterator.next();
                      tempUsuario = new Usuario();
@@ -47,9 +47,13 @@ public class CargaMasiva implements Initializable{
                      tempUsuario.setApellido((String) auxJSONObject.get("Apellido"));
                      tempUsuario.setCarrera((String) auxJSONObject.get("Carrera"));
                      tempUsuario.setPassword((String) auxJSONObject.get("Password"));
+                     //Se añade el usuario a la tabla
                      Data.getUsuariosStructure().add(tempUsuario,tempUsuario.getCarnet());
+                     auxBloque.newCrearUsuario(tempUsuario);
                  }
-                 System.out.println("USUARIOS CARGADOS");
+                 auxBloque.showData();
+                 auxBloque.createBlock();
+
 
              }
              catch (FileNotFoundException e){

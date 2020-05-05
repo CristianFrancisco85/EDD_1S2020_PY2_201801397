@@ -3,6 +3,7 @@ package Dialogos;
 import Clases.Data;
 import Clases.Usuario;
 import Estructuras.LinkedList;
+import Interfaces.Libreria;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -28,7 +29,7 @@ public class CrearPerfil implements Initializable {
     PasswordField passwordTxt;
 
     @FXML
-    public void ActualizarInformacion(){
+    public void crearUsuario(){
         Usuario TempUsuario = new Usuario();
         if(checkUser(Integer.parseInt(carnetTxt.getText()))){
             TempUsuario.setCarnet(Integer.parseInt(carnetTxt.getText()));
@@ -49,6 +50,7 @@ public class CrearPerfil implements Initializable {
             if(passwordTxt.getText().length()>0){
                 TempUsuario.setPassword(passwordTxt.getText());
                 Data.getUsuariosStructure().add(TempUsuario,TempUsuario.getCarnet());
+                Libreria.tempBloque.newCrearUsuario(TempUsuario);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Usuario");
                 alert.setHeaderText(null);

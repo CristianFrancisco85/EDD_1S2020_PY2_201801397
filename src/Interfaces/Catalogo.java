@@ -137,12 +137,13 @@ public class Catalogo implements Initializable {
                 Data.getCategoriasStructure().getValue(Data.getCategoriasStructure().getRoot(), auxLibro.getCategoria())
                 .getValue().getBookList();
             auxArbol.delete(auxArbol.getRoot(),auxLibro.getISBN());
+            Libreria.tempBloque.newEliminarLibro(auxLibro);
             LibrosList.removeByPosition(Apuntador);
             setPrimerLibro();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Eliminar Libro");
             alert.setHeaderText(null);
-            alert.setContentText("El libro ha sido elimnado exitosamente");
+            alert.setContentText("El libro ha sido eliminado exitosamente");
             alert.showAndWait();
         }
         else{

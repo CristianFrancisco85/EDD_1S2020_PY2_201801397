@@ -68,7 +68,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="14.0" layoutY="45.0" mnemonicParsing="false" onAction="#AgregarCatergoria" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Agregar Categoria">
+                        <Button layoutX="14.0" layoutY="45.0" mnemonicParsing="false" onAction="#AgregarCategoria" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Agregar Categoria">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
@@ -169,6 +169,27 @@
                            </font>
                         </Button>
                      </children></AnchorPane>
+              </content>
+               <font>
+                  <Font name="Verdana" size="16.0" />
+               </font>
+            </TitledPane>
+            <TitledPane animated="false" text="BlockChain">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="34.0" layoutY="51.0" mnemonicParsing="false" onAction="#crearBloque" prefHeight="50.0" prefWidth="175.0" style="-fx-background-radius: 100;" text="Agregar Libro">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="280.0" layoutY="66.0" prefHeight="20.0" prefWidth="394.0" text="Crea un bloque y los agrega a la cadena de bloques">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
               </content>
                <font>
                   <Font name="Verdana" size="16.0" />

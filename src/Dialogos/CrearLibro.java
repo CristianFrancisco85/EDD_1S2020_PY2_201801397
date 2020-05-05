@@ -6,6 +6,7 @@ import Clases.Libro;
 import Estructuras.BTree;
 import Estructuras.LinkedList;
 import Estructuras.NodoBinario;
+import Interfaces.Libreria;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -82,6 +83,7 @@ public class CrearLibro implements Initializable {
                 auxLibro.setIdioma(idiomaTxt.getText());
                 //SE AGREGA LIBRO
                 auxArbol.setRoot(auxArbol.add(auxArbol.getRoot(), auxLibro, auxLibro.getISBN()));
+                Libreria.tempBloque.newCrearLibro(auxLibro);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Creacion de Libro");
                 alert.setHeaderText(null);

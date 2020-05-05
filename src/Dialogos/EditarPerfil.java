@@ -3,6 +3,7 @@ package Dialogos;
 import Clases.Data;
 import Clases.Usuario;
 import Estructuras.LinkedList;
+import Interfaces.Libreria;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -43,6 +44,7 @@ public class EditarPerfil implements Initializable {
         catch (NoSuchAlgorithmException e){
             e.printStackTrace();
         }
+        Libreria.tempBloque.newEditarUsuario(TempUsuario);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Usuario");
         alert.setHeaderText(null);
@@ -55,7 +57,7 @@ public class EditarPerfil implements Initializable {
 
     public void setUsuario(int carnet){
         LinkedList<Usuario> AuxList= Data.getUsuariosStructure().getValue(carnet);
-        //SE BUSCA USARIO
+        //SE BUSCA USUARIO
         for(int i=0;i<AuxList.getSize();i++){
             try {
                 if (AuxList.getValue(i).getCarnet()==carnet) {

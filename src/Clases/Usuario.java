@@ -71,6 +71,9 @@ public class Usuario {
     public String getPassword(){
         return Password;
     }
+    public void setPasswordDirect(String arg1){
+        this.Password=arg1;
+    }
 
     @Override
     public String toString(){
