@@ -9,9 +9,11 @@ public class BTree<T> {
 
     private NodoMultiple<T> Root;
     int Grade;
+    int Size;
 
     public BTree(int arg1){
         this.Grade=arg1;
+        Size=0;
     }
 
     public NodoMultiple<T> getRoot(){
@@ -66,12 +68,14 @@ public class BTree<T> {
         if (Nodo == null) {
             //Nodo = new NodoMultiple<>(Value,InsertionParam);
             //System.out.println("Se creo Arbol B con ISBN "+InsertionParam);
+            Size++;
             return new NodoMultiple<>(Value,InsertionParam);
         }
         else{
             //SI EL NODO ES HOJA
             if(Nodo.getNodosList().getSize()==0){
                 Nodo.addValue(Value,InsertionParam);
+                Size++;
                 //System.out.println("Insercion en Nodo Existente Arbol B con ISBN: "+InsertionParam);
                 //SPLIT SI ES NECESARIO
                 Nodo.split(Grade);
@@ -112,6 +116,11 @@ public class BTree<T> {
     public void getAllValues(LinkedList<Libro> ListaLibros){
         this.getRoot().getAllValues(ListaLibros);
     }
+
+    public int getSize(){
+        return  Size;
+    }
+
 
     public void graphArbol(){
         FileChooser fileChooser = new FileChooser();

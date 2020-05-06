@@ -95,6 +95,29 @@ public class DoubleLinkedList<T> {
 
     }
 
+    /**
+     * Obtiene un valor en cierta posicion de la lista
+     * @param arg1 Posicion
+     * @return  Valor en la posicion indicada
+     */
+    public T getByPosition(int arg1) throws Exception{
+
+        if (Head == null) {
+            throw new Exception("Arbol Vacio");
+        }
+        else {
+            Iterador = Head;
+            for (int i = 0; i < arg1; i++) {
+                if (Iterador.getRightNodo() == null) {
+                    throw new Exception("Posicion no existe");
+                } else {
+                    Iterador = Iterador.getRightNodo();
+                }
+            }
+            return Iterador.getValue();
+
+        }
+    }
 
 
 

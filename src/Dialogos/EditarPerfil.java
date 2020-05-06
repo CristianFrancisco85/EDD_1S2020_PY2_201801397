@@ -32,6 +32,7 @@ public class EditarPerfil implements Initializable {
 
     @FXML
     public void ActualizarInformacion(){
+        int oldCarnet=TempUsuario.getCarnet();
         TempUsuario.setCarnet(Integer.parseInt(carnetTxt.getText()));
         TempUsuario.setNombre(nombreTxt.getText());
         TempUsuario.setApellido(apellidoTxt.getText());
@@ -44,7 +45,8 @@ public class EditarPerfil implements Initializable {
         catch (NoSuchAlgorithmException e){
             e.printStackTrace();
         }
-        Libreria.tempBloque.newEditarUsuario(TempUsuario);
+        Data.getUsuariosStructure().add(TempUsuario,TempUsuario.getCarnet());
+        Libreria.tempBloque.newEditarUsuario(TempUsuario,oldCarnet);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Usuario");
         alert.setHeaderText(null);
@@ -62,6 +64,7 @@ public class EditarPerfil implements Initializable {
             try {
                 if (AuxList.getValue(i).getCarnet()==carnet) {
                     TempUsuario=AuxList.getValue(i);
+                    AuxList.removeByPosition(i);
                 }
             }
             catch (Exception e){

@@ -5,11 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
+import java.net.*;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MenuController implements Initializable{
@@ -45,10 +47,38 @@ public class MenuController implements Initializable{
         auxStage.setIconified(true);
     }
 
+    @FXML
+    public void changePorts(){
+        TextInputDialog dialog = new TextInputDialog(Integer.toString(Main.UDP));
+        dialog.setTitle("Puero UDP");
+        dialog.setHeaderText(null);
+        dialog.setContentText("Ingresa el puerto UDP");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            Main.setPuertoUDP(Integer.parseInt(result.get()));
+        }
+
+        dialog = new TextInputDialog(Integer.toString(Main.TCP));
+        dialog.setTitle("Puero TCP");
+        dialog.setHeaderText(null);
+        dialog.setContentText("Ingresa el puerto TCP");
+
+        result = dialog.showAndWait();
+        if (result.isPresent()){
+            Main.setPuertoTCP(Integer.parseInt(result.get()));
+        }
+
+
+    }
+
+
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+
+
 }

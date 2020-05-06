@@ -5,9 +5,8 @@ import Clases.Data;
 import Clases.Libro;
 import Clases.Usuario;
 import Dialogos.EditarPerfil;
-import Estructuras.Bloque;
+import Estructuras.*;
 import Estructuras.LinkedList;
-import Estructuras.NodoBinario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,6 +25,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.URL;
 import java.util.*;
 
@@ -42,7 +43,7 @@ public class Libreria implements Initializable{
     @FXML
     public void EditarPerfil(){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Dialogos/EditarPerfil.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Dialogos/EditarPerfil.fxml"));
             Parent root = fxmlLoader.load();
             EditarPerfil controller = fxmlLoader.<EditarPerfil>getController();
             controller.setUsuario(User);
@@ -60,7 +61,7 @@ public class Libreria implements Initializable{
     @FXML
     public void AgregarUsuario(){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Dialogos/CrearPerfil.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Dialogos/CrearPerfil.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -185,7 +186,7 @@ public class Libreria implements Initializable{
     @FXML
     public void AgregarLibro(){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Dialogos/CrearLibro.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Dialogos/CrearLibro.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -327,9 +328,69 @@ public class Libreria implements Initializable{
         tempBloque=new Bloque();
     }
 
+    @FXML
+    public void graficarNodosRed(){
+        LinkedList<NodoRed> NodosList=Data.getListaNodos();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Guardar Nodos de la Red");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Archivo DOT","*.dot"));
+        File selectedFile = fileChooser.showSaveDialog(null);
+        if(selectedFile!=null){
+            try{
+                FileWriter w = new FileWriter(selectedFile);
+                BufferedWriter bw = new BufferedWriter(w);
+                PrintWriter wr = new PrintWriter(bw);
+                wr.write("digraph{\n");
+                wr.write("node [shape=box]");
+                wr.write("rankdir=LR;");
+
+                wr.write("\""+NodosList.getValue(0).getIP()+"\"");
+                wr.write("->");
+                wr.write("\""+NodosList.getValue(1).getIP()+"\"");
+
+                wr.write("\""+NodosList.getValue(1).getIP()+"\"");
+                wr.write("->");
+                wr.write("\""+NodosList.getValue(0).getIP()+"\"");
+
+                for(int i=0;i<NodosList.getSize()-1;i++){
+                    wr.write("\""+NodosList.getValue(i).getIP()+"\"");
+                    wr.write("->");
+                    wr.write("\""+NodosList.getValue(i+1).getIP()+"\"");
+
+                    wr.write("\""+NodosList.getValue(i+1).getIP()+"\"");
+                    wr.write("->");
+                    wr.write("\""+NodosList.getValue(i).getIP()+"\"");
+                }
+                wr.append("}");
+                wr.close();
+                bw.close();
+                ProcessBuilder pbuilder;
+                String Ruta = selectedFile.getAbsolutePath().replace(".dot","");
+                pbuilder = new ProcessBuilder("dot", "-Tpng", "-o", Ruta+".png ",Ruta+".dot");
+                pbuilder.redirectErrorStream(true);
+                pbuilder.start();
+
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    @FXML
+    public void graficarBlockChain(){
+
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tempBloque= new Bloque();
+
     }
+
 }

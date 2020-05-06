@@ -2,6 +2,7 @@ package Estructuras;
 
 import Clases.CategoriaLibro;
 import Clases.Libro;
+import Interfaces.Libreria;
 import javafx.stage.FileChooser;
 
 import java.io.*;
@@ -343,15 +344,21 @@ public class AVLTree<T,B> {
                 wr.write("node [shape=circle width=\"1.5\" height=\"1.5\" fixedsize=\"true\"];\n");
 
                 for(int i=0;i<NodosList.getSize();i++){
+                    CategoriaLibro<Libro> auxCategoria = (CategoriaLibro<Libro>) NodosList.getValue(i).getValue();
+                    BTree<Libro> auxArbol = auxCategoria.getBookList();
                     if(NodosList.getValue(i).getLeftNodo()!=null){
-                        wr.write("\""+NodosList.getValue(i).getValue().toString()+"\"");
+                        CategoriaLibro<Libro> auxCategoria2 = (CategoriaLibro<Libro>) NodosList.getValue(i).getLeftNodo().getValue();
+                        BTree<Libro> auxArbol2 = auxCategoria2.getBookList();
+                        wr.write("\""+NodosList.getValue(i).getValue().toString()+"\nLibros: "+auxArbol.getSize()+"\"");
                         wr.write("->");
-                        wr.write("\""+NodosList.getValue(i).getLeftNodo().getValue().toString()+"\"[label=\" L\"]\n");
+                        wr.write("\""+NodosList.getValue(i).getLeftNodo().getValue().toString()+"\nLibros: "+auxArbol2.getSize()+"\"[label=\" L\"]\n");
                     }
                     if(NodosList.getValue(i).getRightNodo()!=null){
-                        wr.write("\""+NodosList.getValue(i).getValue().toString()+"\"");
+                        CategoriaLibro<Libro> auxCategoria2 = (CategoriaLibro<Libro>) NodosList.getValue(i).getRightNodo().getValue();
+                        BTree<Libro> auxArbol2 = auxCategoria2.getBookList();
+                        wr.write("\""+NodosList.getValue(i).getValue().toString()+"\nLibros: "+auxArbol.getSize()+"\"");
                         wr.write("->");
-                        wr.write("\""+NodosList.getValue(i).getRightNodo().getValue().toString()+"\"[label=\" R\"]\n");
+                        wr.write("\""+NodosList.getValue(i).getRightNodo().getValue().toString()+"\nLibros: "+auxArbol2.getSize()+"\"[label=\" R\"]\n");
                     }
                 }
                 wr.append("}");
