@@ -21,6 +21,7 @@ public class Main extends Application {
     static DatagramSocket datagramSocket;
     static ServerSocket serverSocket;
     public static int UDP,TCP;
+    public static String BroadcastIP;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -32,6 +33,7 @@ public class Main extends Application {
         primaryStage.show();
         UDP=55557;
         TCP=9999;
+        BroadcastIP="10.8.0.255";
         flag1=true;
         flag2=true;
         thread = new Thread(EscucharIP);
@@ -160,7 +162,7 @@ public class Main extends Application {
             mydata = mydata+inetAddress.getHostAddress();
             DatagramSocket enviador = new DatagramSocket();
             byte[] dato = mydata.getBytes();
-            DatagramPacket dgp = new DatagramPacket(dato, dato.length, InetAddress.getByName("192.168.1.255"), UDP);
+            DatagramPacket dgp = new DatagramPacket(dato, dato.length, InetAddress.getByName(BroadcastIP), UDP);
             enviador.send(dgp);
         }
         catch (IOException e){
@@ -176,7 +178,39 @@ public class Main extends Application {
             mydata = mydata+inetAddress.getHostAddress();
             DatagramSocket enviador = new DatagramSocket();
             byte[] dato = mydata.getBytes();
-            DatagramPacket dgp = new DatagramPacket(dato, dato.length, InetAddress.getByName("192.168.1.255"), UDP);
+            DatagramPacket dgp = new DatagramPacket(dato, dato.length, InetAddress.getByName(BroadcastIP), UDP);
+            enviador.send(dgp);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void sendAddIP(String arg1){
+
+        try {
+            String mydata="ADD;";
+            InetAddress inetAddress = InetAddress.getLocalHost();
+            mydata = mydata+inetAddress.getHostAddress();
+            DatagramSocket enviador = new DatagramSocket();
+            byte[] dato = mydata.getBytes();
+            DatagramPacket dgp = new DatagramPacket(dato, dato.length, InetAddress.getByName(arg1), UDP);
+            enviador.send(dgp);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void sendRemoveIP(String arg1){
+
+        try {
+            String mydata="REMOVE;";
+            InetAddress inetAddress = InetAddress.getLocalHost();
+            mydata = mydata+inetAddress.getHostAddress();
+            DatagramSocket enviador = new DatagramSocket();
+            byte[] dato = mydata.getBytes();
+            DatagramPacket dgp = new DatagramPacket(dato, dato.length, InetAddress.getByName(arg1), UDP);
             enviador.send(dgp);
         }
         catch (IOException e){
@@ -218,6 +252,11 @@ public class Main extends Application {
         flag2=true;
         thread2 = new Thread(EscucharDatos);
         thread2.start();
+    }
+
+    public static void setBroadcastIP(String newIP){
+        BroadcastIP=newIP;
+        sendAddIP();
     }
 
     public static void main(String[] args) {

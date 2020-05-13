@@ -1,5 +1,6 @@
 package Estructuras;
 
+import Clases.Data;
 import Clases.Usuario;
 import javafx.stage.FileChooser;
 
@@ -101,7 +102,9 @@ public class HashTable<T> {
                 String Ruta = selectedFile.getAbsolutePath().replace(".dot","");
                 pbuilder = new ProcessBuilder("dot", "-Tpng", "-o", Ruta+".png ",Ruta+".dot");
                 pbuilder.redirectErrorStream(true);
-                pbuilder.start();
+                Process process= pbuilder.start();
+                process.waitFor();
+                Data.showImage(Ruta+".png");
 
             }
             catch (IOException e){

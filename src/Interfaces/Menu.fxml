@@ -39,7 +39,7 @@
             <Font name="Verdana" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="cargaBtn" layoutX="480.0" layoutY="17.0" mnemonicParsing="false" onAction="#changePorts" prefHeight="24.0" prefWidth="176.0" style="-fx-background-radius: 100;" text="Configurar Puertos">
+      <Button fx:id="cargaBtn" layoutX="480.0" layoutY="17.0" mnemonicParsing="false" onAction="#config" prefHeight="24.0" prefWidth="176.0" style="-fx-background-radius: 100;" text="Configuraciones">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>

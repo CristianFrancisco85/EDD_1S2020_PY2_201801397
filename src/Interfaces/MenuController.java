@@ -48,25 +48,18 @@ public class MenuController implements Initializable{
     }
 
     @FXML
-    public void changePorts(){
-        TextInputDialog dialog = new TextInputDialog(Integer.toString(Main.UDP));
-        dialog.setTitle("Puero UDP");
-        dialog.setHeaderText(null);
-        dialog.setContentText("Ingresa el puerto UDP");
-
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()){
-            Main.setPuertoUDP(Integer.parseInt(result.get()));
+    public void config(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Dialogos/Config.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Confi");
+            stage.show();
         }
-
-        dialog = new TextInputDialog(Integer.toString(Main.TCP));
-        dialog.setTitle("Puero TCP");
-        dialog.setHeaderText(null);
-        dialog.setContentText("Ingresa el puerto TCP");
-
-        result = dialog.showAndWait();
-        if (result.isPresent()){
-            Main.setPuertoTCP(Integer.parseInt(result.get()));
+        catch (IOException e){
+            e.printStackTrace();
         }
 
 

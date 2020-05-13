@@ -1,6 +1,7 @@
 package Estructuras;
 
 import Clases.CategoriaLibro;
+import Clases.Data;
 import Clases.Libro;
 import Interfaces.Libreria;
 import javafx.stage.FileChooser;
@@ -368,7 +369,9 @@ public class AVLTree<T,B> {
                 String Ruta = selectedFile.getAbsolutePath().replace(".dot","");
                 pbuilder = new ProcessBuilder("dot", "-Tpng", "-o", Ruta+".png ",Ruta+".dot");
                 pbuilder.redirectErrorStream(true);
-                pbuilder.start();
+                Process process= pbuilder.start();
+                process.waitFor();
+                Clases.Data.showImage(Ruta+".png");
 
             }
             catch (IOException e){
@@ -412,7 +415,9 @@ public class AVLTree<T,B> {
                 String Ruta = selectedFile.getAbsolutePath().replace(".dot","");
                 pbuilder = new ProcessBuilder("dot", "-Tpng", "-o", Ruta+".png ",Ruta+".dot");
                 pbuilder.redirectErrorStream(true);
-                pbuilder.start();
+                Process process= pbuilder.start();
+                process.waitFor();
+                Clases.Data.showImage(Ruta+".png");
 
             }
             catch (IOException e){
@@ -456,7 +461,9 @@ public class AVLTree<T,B> {
                 String Ruta = selectedFile.getAbsolutePath().replace(".dot","");
                 pbuilder = new ProcessBuilder("dot", "-Tpng", "-o", Ruta+".png ",Ruta+".dot");
                 pbuilder.redirectErrorStream(true);
-                pbuilder.start();
+                Process process= pbuilder.start();
+                process.waitFor();
+                Clases.Data.showImage(Ruta+".png");
 
             }
             catch (IOException e){
@@ -500,7 +507,9 @@ public class AVLTree<T,B> {
                 String Ruta = selectedFile.getAbsolutePath().replace(".dot","");
                 pbuilder = new ProcessBuilder("dot", "-Tpng", "-o", Ruta+".png ",Ruta+".dot");
                 pbuilder.redirectErrorStream(true);
-                pbuilder.start();
+                Process process= pbuilder.start();
+                process.waitFor();
+                Clases.Data.showImage(Ruta+".png");
 
             }
             catch (IOException e){

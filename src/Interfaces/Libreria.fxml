@@ -168,7 +168,12 @@
                               <Font name="Verdana" size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="librosBtn" layoutX="21.0" layoutY="195.0" mnemonicParsing="false" onAction="#graficarNodosRed" prefHeight="40.0" prefWidth="300.0" style="-fx-background-radius: 100;" text="Nodos de red BlockChain">
+                        <Button fx:id="librosBtn" layoutX="21.0" layoutY="195.0" mnemonicParsing="false" onAction="#graficarNodosRed" prefHeight="40.0" prefWidth="300.0" style="-fx-background-radius: 100;" text="Nodos de Red Blockchain">
+                           <font>
+                              <Font name="Verdana" size="16.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="librosBtn" layoutX="363.0" layoutY="195.0" mnemonicParsing="false" onAction="#graficarBlockChain" prefHeight="40.0" prefWidth="300.0" style="-fx-background-radius: 100;" text="Bloques de Red Blockchain">
                            <font>
                               <Font name="Verdana" size="16.0" />
                            </font>

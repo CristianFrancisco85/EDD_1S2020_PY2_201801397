@@ -4,6 +4,7 @@ import Clases.CategoriaLibro;
 import Clases.Data;
 import Clases.Libro;
 import Clases.Usuario;
+import javafx.scene.control.Alert;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -56,6 +57,11 @@ public class Bloque {
             if(this.validateBlock()){
                 System.out.println("BLOQUE VALIDO");
                 this.executeData();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("BlockChain");
+                alert.setHeaderText(null);
+                alert.setContentText("Bloque Recibido y Ejecutado Correctamente \n Hash:"+this .hash);
+                alert.showAndWait();
             }
             else{
                 System.out.println("BLOQUE NO VALIDO");
@@ -346,7 +352,6 @@ public class Bloque {
     public void createBlock(){
         index= Data.getBlockIndex();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy::HH:mm:ss");
-        timeStamp = sdf.format(new Timestamp(System.currentTimeMillis()));
         try {
             prevHash = Data.getBlockChain().getLast().hash;
         }
@@ -358,6 +363,7 @@ public class Bloque {
 
         do{
             nonce++;
+            timeStamp = sdf.format(new Timestamp(System.currentTimeMillis()));
             auxString=index+timeStamp+prevHash+data.toJSONString()+nonce;
             try {
                 MessageDigest mdHash = MessageDigest.getInstance("SHA-256");
@@ -414,9 +420,6 @@ public class Bloque {
         }
         return false;
     }
-
-
-
 
 
 

@@ -1,5 +1,6 @@
 package Estructuras;
 
+import Clases.Data;
 import Clases.Libro;
 import javafx.stage.FileChooser;
 
@@ -142,7 +143,9 @@ public class BTree<T> {
                 String Ruta = selectedFile.getAbsolutePath().replace(".dot","");
                 pbuilder = new ProcessBuilder("dot", "-Tpng", "-o", Ruta+".png ",Ruta+".dot");
                 pbuilder.redirectErrorStream(true);
-                pbuilder.start();
+                Process process= pbuilder.start();
+                process.waitFor();
+                Data.showImage(Ruta+".png");
 
             }
             catch (IOException e){

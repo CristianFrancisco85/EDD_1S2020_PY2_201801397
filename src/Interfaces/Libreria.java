@@ -25,8 +25,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.net.URL;
 import java.util.*;
 
@@ -326,6 +324,11 @@ public class Libreria implements Initializable{
     public void crearBloque(){
         tempBloque.createBlock();
         tempBloque=new Bloque();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("BlockChain");
+        alert.setHeaderText(null);
+        alert.setContentText("El bloque ha sido creado exitosamente \n Hash:"+tempBloque.getJSONObject().get("HASH"));
+        alert.showAndWait();
     }
 
     @FXML
@@ -369,6 +372,7 @@ public class Libreria implements Initializable{
                 pbuilder = new ProcessBuilder("dot", "-Tpng", "-o", Ruta+".png ",Ruta+".dot");
                 pbuilder.redirectErrorStream(true);
                 pbuilder.start();
+                Data.showImage(Ruta+".png");
 
             }
             catch (IOException e){
@@ -383,6 +387,67 @@ public class Libreria implements Initializable{
 
     @FXML
     public void graficarBlockChain(){
+        DoubleLinkedList<Bloque> NodosList=Data.getBlockChain();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Guardar BlockChain");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Archivo DOT","*.dot"));
+        File selectedFile = fileChooser.showSaveDialog(null);
+        if(selectedFile!=null){
+            try{
+                FileWriter w = new FileWriter(selectedFile);
+                BufferedWriter bw = new BufferedWriter(w);
+                PrintWriter wr = new PrintWriter(bw);
+                wr.write("digraph{\n");
+                wr.write("node [shape=box]");
+                wr.write("rankdir=LR;");
+
+                for(int i=0;i<NodosList.getSize()-1;i++){
+                    wr.write("\""+"Index: "+NodosList.getByPosition(i).getJSONObject().get("INDEX")+"\n");
+                    wr.write("TimeStamp: "+NodosList.getByPosition(i).getJSONObject().get("TIMESTAMP")+"\n");
+                    wr.write("NONCE: "+NodosList.getByPosition(i).getJSONObject().get("NONCE")+"\n");
+                    wr.write("PrevHash: "+NodosList.getByPosition(i).getJSONObject().get("PREVIOUSHASH")+"\n");
+                    wr.write("Hash: "+NodosList.getByPosition(i).getJSONObject().get("HASH")+"\"");
+                    wr.write("->");
+                    wr.write("\""+"Index: "+NodosList.getByPosition(i+1).getJSONObject().get("INDEX")+"\n");
+                    wr.write("TimeStamp: "+NodosList.getByPosition(i+1).getJSONObject().get("TIMESTAMP")+"\n");
+                    wr.write("NONCE: "+NodosList.getByPosition(i+1).getJSONObject().get("NONCE")+"\n");
+                    wr.write("PrevHash: "+NodosList.getByPosition(i+1).getJSONObject().get("PREVIOUSHASH")+"\n");
+                    wr.write("Hash: "+NodosList.getByPosition(i+1).getJSONObject().get("HASH")+"\"");
+
+                    wr.write("\""+"Index: "+NodosList.getByPosition(i+1).getJSONObject().get("INDEX")+"\n");
+                    wr.write("TimeStamp: "+NodosList.getByPosition(i+1).getJSONObject().get("TIMESTAMP")+"\n");
+                    wr.write("NONCE: "+NodosList.getByPosition(i+1).getJSONObject().get("NONCE")+"\n");
+                    wr.write("PrevHash: "+NodosList.getByPosition(i+1).getJSONObject().get("PREVIOUSHASH")+"\n");
+                    wr.write("Hash: "+NodosList.getByPosition(i+1).getJSONObject().get("HASH")+"\"");
+                    wr.write("->");
+                    wr.write("\""+"Index: "+NodosList.getByPosition(i).getJSONObject().get("INDEX")+"\n");
+                    wr.write("TimeStamp: "+NodosList.getByPosition(i).getJSONObject().get("TIMESTAMP")+"\n");
+                    wr.write("NONCE: "+NodosList.getByPosition(i).getJSONObject().get("NONCE")+"\n");
+                    wr.write("PrevHash: "+NodosList.getByPosition(i).getJSONObject().get("PREVIOUSHASH")+"\n");
+                    wr.write("Hash: "+NodosList.getByPosition(i).getJSONObject().get("HASH")+"\"");
+                }
+                wr.append("}");
+                wr.close();
+                bw.close();
+                ProcessBuilder pbuilder;
+                String Ruta = selectedFile.getAbsolutePath().replace(".dot","");
+                pbuilder = new ProcessBuilder("dot", "-Tpng", "-o", Ruta+".png ",Ruta+".dot");
+                pbuilder.redirectErrorStream(true);
+                Process process= pbuilder.start();
+                process.waitFor();
+                Data.showImage(Ruta+".png");
+
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+
 
     }
 
