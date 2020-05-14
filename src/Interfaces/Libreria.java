@@ -323,12 +323,12 @@ public class Libreria implements Initializable{
     @FXML
     public void crearBloque(){
         tempBloque.createBlock();
-        tempBloque=new Bloque();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("BlockChain");
         alert.setHeaderText(null);
         alert.setContentText("El bloque ha sido creado exitosamente \n Hash:"+tempBloque.getJSONObject().get("HASH"));
         alert.showAndWait();
+        tempBloque=new Bloque();
     }
 
     @FXML

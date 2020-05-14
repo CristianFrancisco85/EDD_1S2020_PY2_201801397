@@ -49,6 +49,7 @@ public class Bloque {
             System.out.println("Bloque Nuevo apartir de:\n"+jsonObject);
 
             this.index= (int)((long)jsonObject.get("INDEX"));
+            Data.blockIndex++;
             this.timeStamp= (String) jsonObject.get("TIMESTAMP");
             this.nonce= (int)((long)jsonObject.get("NONCE"));
             this.data = (JSONArray) jsonObject.get("DATA");

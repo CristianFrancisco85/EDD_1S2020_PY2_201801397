@@ -26,6 +26,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Data.initializeStructures();
+        Data.readBlockChain();
         Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         primaryStage.setTitle("Menu");
         primaryStage.setScene(new Scene(root, 725, 575));
@@ -55,6 +56,7 @@ public class Main extends Application {
         catch (IOException e){
             System.out.println("Stopped listening TCP");
         }
+        Data.saveBlockChain();
 
     }
 

@@ -4,6 +4,13 @@ import Estructuras.*;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.*;
+import java.util.Iterator;
 
 
 public abstract class Data {
@@ -44,6 +51,61 @@ public abstract class Data {
         alert.showAndWait();
 
 
+    }
+    public static void saveBlockChain(){
+        String desktopPath=System.getProperty("user.home") + "/Desktop/BlockChain";
+        new File(desktopPath).mkdirs();
+
+        try {
+            FileWriter w = new FileWriter(desktopPath + "/BlockChain.json");
+            BufferedWriter bw = new BufferedWriter(w);
+            PrintWriter wr = new PrintWriter(bw);
+
+            JSONArray Arreglo = new JSONArray();
+
+            for(int i=0;i<BlockChain.getSize();i++){
+                Arreglo.add(BlockChain.getByPosition(i).getJSONObject());
+            }
+
+            wr.write(Arreglo.toJSONString());
+            wr.close();
+            bw.close();
+
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
+    public static void readBlockChain(){
+        String desktopPath=System.getProperty("user.home") + "/Desktop/BlockChain";
+        try {
+            Reader reader = new FileReader(desktopPath + "/BlockChain.json");
+            JSONParser parser = new JSONParser();
+
+            JSONArray BlockList = (JSONArray) parser.parse(reader);
+            Iterator<JSONObject> iterator = BlockList.iterator();
+            Bloque auxBloque;
+            JSONObject auxJSONObject;
+            while (iterator.hasNext()){
+                auxJSONObject = iterator.next();
+                auxBloque = new Bloque(auxJSONObject.toJSONString());
+                Data.getBlockChain().addEnd(auxBloque);
+            }
+        }
+        catch (FileNotFoundException e){
+            System.out.println("No hay BlockChain Existente");
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
 
