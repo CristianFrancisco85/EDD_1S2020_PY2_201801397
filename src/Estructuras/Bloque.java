@@ -387,7 +387,7 @@ public class Bloque {
 
         for(int i=0;i<Data.getListaNodos().getSize();i++){
             try {
-                Data.getListaNodos().getValue(i).sendData(this.getJSONObject().toJSONString());
+                Data.getListaNodos().getValue(i).sendData("SINGLE;"+this.getJSONObject().toJSONString());
             }
             catch (Exception e){
                 e.printStackTrace();

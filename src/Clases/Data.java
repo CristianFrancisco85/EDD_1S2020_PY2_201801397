@@ -53,7 +53,7 @@ public abstract class Data {
 
     }
     public static void saveBlockChain(){
-        String desktopPath=System.getProperty("user.home") + "/Desktop/BlockChain";
+        String desktopPath=System.getProperty("user.home") + "/BlockChain";
         new File(desktopPath).mkdirs();
 
         try {
@@ -82,7 +82,7 @@ public abstract class Data {
 
     }
     public static void readBlockChain(){
-        String desktopPath=System.getProperty("user.home") + "/Desktop/BlockChain";
+        String desktopPath=System.getProperty("user.home") + "/BlockChain";
         try {
             Reader reader = new FileReader(desktopPath + "/BlockChain.json");
             JSONParser parser = new JSONParser();
@@ -107,6 +107,7 @@ public abstract class Data {
             e.printStackTrace();
         }
     }
+
 
 
 }

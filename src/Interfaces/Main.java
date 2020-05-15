@@ -8,10 +8,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.*;
+import java.util.Iterator;
 
 public class Main extends Application {
 
@@ -80,6 +85,7 @@ public class Main extends Application {
                         Data.getListaNodos().addEnd(new NodoRed(newData[1]));
                         System.out.println("IP " + newData[1] + " agregada.");
                         sendAddIP();
+                        requestSync(newData[1]);
                     }
 
                 }
@@ -96,6 +102,34 @@ public class Main extends Application {
                         if(Data.getListaNodos().getValue(i).getIP().equals(newData[1])){
                             Data.getListaNodos().removeByPosition(i);
                             System.out.println("IP " + newData[1] + " eliminada.");
+                        }
+                    }
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+                break;
+            case "SYNC":
+                try{
+                    JSONArray newArray = new JSONArray();
+
+
+                    for(int i=0;i<Data.getBlockChain().getSize();i++){
+                        int index = (Integer) Data.getBlockChain().getByPosition(i).getJSONObject().get("INDEX");
+                        if(index>Integer.parseInt(newData[2])){
+                            newArray.add(Data.getBlockChain().getByPosition(i).getJSONObject());
+                        }
+                    }
+
+                    for(int i=0;i<Data.getListaNodos().getSize();i++){
+                        try {
+                            if(Data.getListaNodos().getValue(i).getIP().equals(newData[1])){
+                                Data.getListaNodos().getValue(i).sendData("MULTI;"+newArray.toJSONString());
+                            }
+
+                        }
+                        catch (Exception e){
+                            e.printStackTrace();
                         }
                     }
 
@@ -147,9 +181,29 @@ public class Main extends Application {
                     mySocket.close();
                     serverSocket.close();
                     System.out.println("Respuesta en puerto "+TCP+"..."+answer);
-                    Bloque auxBloque = new Bloque(answer);
-                    Data.getBlockChain().addEnd(auxBloque);
-                } catch (IOException e) {
+                    String data[]  = answer.split(";");
+                    if(data[0].equals("SINGLE")){
+                        Bloque auxBloque = new Bloque(data[1]);
+                        Data.getBlockChain().addEnd(auxBloque);
+                    }
+                    else if(data[0].equals("MULTI")){
+                        JSONParser parser = new JSONParser();
+                        JSONArray BlockList = (JSONArray) parser.parse(data[1]);
+                        Iterator<JSONObject> iterator = BlockList.iterator();
+                        Bloque auxBloque;
+                        JSONObject auxJSONObject;
+                        while (iterator.hasNext()){
+                            auxJSONObject = iterator.next();
+                            auxBloque = new Bloque(auxJSONObject.toJSONString());
+                            Data.getBlockChain().addEnd(auxBloque);
+                        }
+                    }
+
+                }
+                catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
+                catch (ParseException e) {
                     System.out.println(e.getMessage());
                 }
             }
@@ -186,6 +240,26 @@ public class Main extends Application {
         catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public static void requestSync(String IP){
+        try {
+            String mydata="SYNC;";
+            InetAddress inetAddress = InetAddress.getLocalHost();
+            mydata = mydata+inetAddress.getHostAddress()+";";
+            mydata = mydata+(Data.blockIndex-1);
+            DatagramSocket enviador = new DatagramSocket();
+            byte[] dato = mydata.getBytes();
+            DatagramPacket dgp = new DatagramPacket(dato, dato.length, InetAddress.getByName(IP), UDP);
+            enviador.send(dgp);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public static void sendAddIP(String arg1){
