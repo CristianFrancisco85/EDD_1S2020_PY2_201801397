@@ -14,6 +14,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.*;
 import java.util.Iterator;
@@ -113,7 +114,6 @@ public class Main extends Application {
                 try{
                     JSONArray newArray = new JSONArray();
 
-
                     for(int i=0;i<Data.getBlockChain().getSize();i++){
                         int index = (Integer) Data.getBlockChain().getByPosition(i).getJSONObject().get("INDEX");
                         if(index>Integer.parseInt(newData[2])){
@@ -123,9 +123,11 @@ public class Main extends Application {
 
                     for(int i=0;i<Data.getListaNodos().getSize();i++){
                         try {
-                            if(Data.getListaNodos().getValue(i).getIP().equals(newData[1])){
-                                Data.getListaNodos().getValue(i).sendData("MULTI;"+newArray.toJSONString());
-                            }
+                            Socket mySocket = new Socket(newData[1], Main.TCP);
+                            DataOutputStream flujo_salida = new DataOutputStream(mySocket.getOutputStream());
+                            flujo_salida.writeUTF("MULTIP"+newArray.toJSONString());
+                            flujo_salida.close();
+                            mySocket.close();
 
                         }
                         catch (Exception e){
@@ -181,12 +183,14 @@ public class Main extends Application {
                     mySocket.close();
                     serverSocket.close();
                     System.out.println("Respuesta en puerto "+TCP+"..."+answer);
-                    String data[]  = answer.split(";");
+                    String data[] = new String[2];
+                    data[0]=answer.substring(0,6);
+                    data[1]=answer.substring(6);
                     if(data[0].equals("SINGLE")){
                         Bloque auxBloque = new Bloque(data[1]);
                         Data.getBlockChain().addEnd(auxBloque);
                     }
-                    else if(data[0].equals("MULTI")){
+                    else if(data[0].equals("MULTIP")){
                         JSONParser parser = new JSONParser();
                         JSONArray BlockList = (JSONArray) parser.parse(data[1]);
                         Iterator<JSONObject> iterator = BlockList.iterator();

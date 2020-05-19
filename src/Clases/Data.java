@@ -52,6 +52,14 @@ public abstract class Data {
 
 
     }
+    public static void showAlert(String arg1){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("BlockChain");
+        alert.setHeaderText(null);
+        alert.setContentText(arg1);
+        alert.showAndWait();
+
+    }
     public static void saveBlockChain(){
         String desktopPath=System.getProperty("user.home") + "/BlockChain";
         new File(desktopPath).mkdirs();

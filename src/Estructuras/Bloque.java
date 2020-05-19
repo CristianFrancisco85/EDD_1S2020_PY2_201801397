@@ -58,11 +58,7 @@ public class Bloque {
             if(this.validateBlock()){
                 System.out.println("BLOQUE VALIDO");
                 this.executeData();
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("BlockChain");
-                alert.setHeaderText(null);
-                alert.setContentText("Bloque Recibido y Ejecutado Correctamente \n Hash:"+this .hash);
-                alert.showAndWait();
+                System.out.println("Bloque Recibido y Ejecutado Correctamente \n Hash:"+this .hash);
             }
             else{
                 System.out.println("BLOQUE NO VALIDO");
@@ -387,7 +383,7 @@ public class Bloque {
 
         for(int i=0;i<Data.getListaNodos().getSize();i++){
             try {
-                Data.getListaNodos().getValue(i).sendData("SINGLE;"+this.getJSONObject().toJSONString());
+                Data.getListaNodos().getValue(i).sendData("SINGLE"+this.getJSONObject().toJSONString());
             }
             catch (Exception e){
                 e.printStackTrace();
