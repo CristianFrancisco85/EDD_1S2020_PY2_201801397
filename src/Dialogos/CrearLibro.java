@@ -38,6 +38,8 @@ public class CrearLibro implements Initializable {
     @FXML
     TextField idiomaTxt;
 
+    public int MyCarnet;
+
 
     @FXML
     public void crearLibro(){
@@ -66,7 +68,7 @@ public class CrearLibro implements Initializable {
 
 
         try {
-            //SI EL ISB AUN NO EXISTE
+            //SI EL ISBN AUN NO EXISTE
             if(categoriaCMB.getValue()!=null) {
                 //Se obtiene arbol B de categoria
                 auxArbol = Data.getCategoriasStructure().
@@ -81,6 +83,7 @@ public class CrearLibro implements Initializable {
                 auxLibro.setEdicion(Integer.parseInt(edicionTxt.getText()));
                 auxLibro.setCategoria((String) categoriaCMB.getValue());
                 auxLibro.setIdioma(idiomaTxt.getText());
+                auxLibro.setCreador(MyCarnet);
                 //SE AGREGA LIBRO
                 auxArbol.setRoot(auxArbol.add(auxArbol.getRoot(), auxLibro, auxLibro.getISBN()));
                 Libreria.tempBloque.newCrearLibro(auxLibro);
@@ -107,6 +110,9 @@ public class CrearLibro implements Initializable {
 
     }
 
+    public void setMyCarnet(int arg1){
+        MyCarnet=arg1;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

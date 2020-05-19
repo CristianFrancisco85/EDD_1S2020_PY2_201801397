@@ -4,6 +4,7 @@ import Clases.CategoriaLibro;
 import Clases.Data;
 import Clases.Libro;
 import Clases.Usuario;
+import Dialogos.CrearLibro;
 import Dialogos.EditarPerfil;
 import Estructuras.*;
 import Estructuras.LinkedList;
@@ -186,6 +187,8 @@ public class Libreria implements Initializable{
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Dialogos/CrearLibro.fxml"));
             Parent root = fxmlLoader.load();
+            CrearLibro controller = fxmlLoader.<CrearLibro>getController();
+            controller.setMyCarnet(User);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);

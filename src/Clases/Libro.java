@@ -23,7 +23,6 @@ public class Libro {
         return this.ISBN;
     }
 
-
     public void setYear(int arg1){
         this.Year=arg1;
     }
